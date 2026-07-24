@@ -567,7 +567,7 @@ html.js .reveal.is-in{ opacity:1; transform:none; }
 /* inline widget (soru sor mini) */
 .miniwidget{ background:var(--night-2); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:22px 24px; margin:clamp(36px,5vw,56px) 0; }
 .miniwidget h4{ font-family:var(--serif); font-size:1.2rem; color:var(--chalk); margin-bottom:14px; }
-.miniwidget form{ display:grid; grid-template-columns:1fr 1fr auto; gap:12px; }
+.miniwidget form{ display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:12px; }
 .miniwidget input{ padding:12px 14px; border:1px solid var(--line-2); border-radius:var(--radius); background:var(--night); color:var(--chalk); font-family:var(--sans); font-size:.95rem; }
 .miniwidget input::placeholder{ color:var(--muted); }
 .miniwidget input:focus{ outline:none; border-color:var(--amber); }

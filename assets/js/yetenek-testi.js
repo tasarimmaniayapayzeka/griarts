@@ -184,6 +184,7 @@
     html += '<form id="quizForm" novalidate>';
     html += '<div class="field"><label for="qad">Adın Soyadın</label><input type="text" id="qad" placeholder="Adın" required></div>';
     html += '<div class="field"><label for="qtel">Telefon</label><input type="tel" id="qtel" placeholder="05xx xxx xx xx" required></div>';
+    html += '<div class="field"><label for="qeposta">E-posta</label><input type="email" id="qeposta" placeholder="ornek@eposta.com"></div>';
     html += '<label class="quiz__kvkk"><input type="checkbox" id="qkvkk" required> Bilgilerimin yalnızca benimle iletişim için kullanılacağını kabul ediyorum.</label>';
     html += '<button type="submit" class="btn btn--primary" style="width:100%;margin-top:12px">Ücretsiz Deneme Dersi Talep Et</button>';
     html += '</form>';
@@ -198,11 +199,12 @@
     var form = document.getElementById('quizForm');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var ad = document.getElementById('qad'), tel = document.getElementById('qtel'), kv = document.getElementById('qkvkk');
+      var ad = document.getElementById('qad'), tel = document.getElementById('qtel'), kv = document.getElementById('qkvkk'), eposta = document.getElementById('qeposta');
       if (!ad.value.trim()) { ad.focus(); return; }
       if (!tel.value.trim()) { tel.focus(); return; }
       if (!kv.checked) { kv.focus(); return; }
-      var msg = encodeURIComponent('Merhaba! Ben ' + ad.value.trim() + '. Yetenek Testi’nde bana "' + prog.title + '" önerildi. Ücretsiz deneme dersi için bilgi almak istiyorum. Tel: ' + tel.value.trim());
+      var mailPart = eposta && eposta.value.trim() ? ' E-posta: ' + eposta.value.trim() + '.' : '';
+      var msg = encodeURIComponent('Merhaba! Ben ' + ad.value.trim() + '. Yetenek Testi’nde bana "' + prog.title + '" önerildi. Ücretsiz deneme dersi için bilgi almak istiyorum. Tel: ' + tel.value.trim() + '.' + mailPart);
       var lead = document.getElementById('quizLead');
       lead.innerHTML = '<div class="quiz__ok">' + svg(I.check, 2) + '<h3>Teşekkürler, ' + ad.value.trim().split(' ')[0] + '!</h3>'
         + '<p>Talebini aldık, en kısa sürede sana döneceğiz. Dilersen hemen WhatsApp’tan da yazabilirsin:</p>'
