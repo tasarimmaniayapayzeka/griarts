@@ -1,0 +1,11 @@
+# OS / editör
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# node
+node_modules/
+
+# iç planlama dokümanları (siteye dahil değil, gizli kalsın)
+PLAN/
