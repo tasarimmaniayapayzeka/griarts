@@ -1,22 +1,35 @@
-<!DOCTYPE html>
+/* Gri Akademi — Blog statik üreteci
+   Kullanım: node tools/gen-blog.cjs
+   Veri: data/blog-posts.json  (dizi: {slug,kategori,title,seoDesc,excerpt,readMinutes,bodyHtml}) */
+const fs = require('fs');
+const path = require('path');
+const ROOT = path.join(__dirname, '..');
+const POSTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'blog-posts.json'), 'utf8'));
+
+const svgArrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const svgBack = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
+const svgClock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;vertical-align:-2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+
+function shell(o) {
+  return `<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.className+=" js";</script>
-<title>2024–2025 Çıkmış Sorular — Güzel Sanatlar Yetenek Sınavı | Gri Akademi</title>
-<meta name="description" content="Mimar Sinan (MSGSÜ) ve Marmara GSF 2024–2025 yetenek sınavı çıkmış soruları ve çözüm ipuçları. Gri Akademi arşivi, Bakırköy.">
-<link rel="canonical" href="https://www.griarts.com/cikmis-sorular.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="2024–2025 Çıkmış Sorular — Güzel Sanatlar Yetenek Sınavı | Gri Akademi">
-<meta property="og:description" content="Mimar Sinan (MSGSÜ) ve Marmara GSF 2024–2025 yetenek sınavı çıkmış soruları ve çözüm ipuçları. Gri Akademi arşivi, Bakırköy.">
+<title>${o.title}</title>
+<meta name="description" content="${o.desc}">
+<link rel="canonical" href="https://www.griarts.com/${o.slug}">
+<meta property="og:type" content="${o.ogType || 'website'}">
+<meta property="og:title" content="${o.title}">
+<meta property="og:description" content="${o.desc}">
 <meta property="og:image" content="assets/img/og-cover.png">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
-
+${o.schema || ''}
 </head>
 <body>
 <div class="topbar"><div class="container topbar__inner">
@@ -35,8 +48,8 @@
     <li><a href="index.html#hakkimizda">Hakkımızda</a></li>
     <li><a href="index.html#hizmetler">Sanat Kursları <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="gsf-hazirlik.html">GSF Hazırlık</a><a href="gsl-hazirlik.html">GSL Hazırlık</a><a href="hobi-resim.html">Hobi Resim</a></div></li>
     <li><a href="workshoplar.html">Workshoplar <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="hobi-seramik.html">Hobi Seramik</a><a href="seramik-heykel.html">Seramik & Heykel</a><a href="mozaik.html">Mozaik</a><a href="vitray.html">Vitray</a></div></li>
-    <li><a href="yurt-disi-portfolyo.html">Portfolyo <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="yurt-ici-portfolyo.html">Yurt İçi Portfolyo</a><a href="yurt-disi-portfolyo.html">Yurt Dışı Portfolyo</a></div></li>
-    <li><a href="cikmis-sorular.html" class="is-active">Çıkmış Sorular</a></li>
+    <li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li>
+    <li><a href="blog.html" class="${o.active === 'blog' ? 'is-active' : ''}">Blog</a></li>
     <li><a href="index.html#iletisim">İletişim</a></li>
   </ul></nav>
   <div class="nav__actions"><a href="yetenek-testi.html" class="btn btn--primary nav__cta desktop-only">Yetenek Testi</a><button class="nav__toggle" id="navToggle" aria-label="Menüyü aç" aria-expanded="false"><span></span></button></div>
@@ -45,56 +58,19 @@
 <aside class="mobile-nav" id="mobileNav" aria-label="Mobil menü">
   <div class="mobile-nav__head"><span class="brand__name">Gri Akademi</span><button class="nav__toggle" id="navClose" aria-label="Menüyü kapat" style="display:inline-flex"><span></span></button></div>
   <ul>
-    <li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="gsf-hazirlik.html">GSF Hazırlık</a></li><li><a href="gsl-hazirlik.html">GSL Hazırlık</a></li><li><a href="workshoplar.html">Workshoplar</a></li><li><a href="yurt-disi-portfolyo.html">Portfolyo</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="index.html#iletisim">İletişim</a></li>
+    <li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="gsf-hazirlik.html">GSF Hazırlık</a></li><li><a href="workshoplar.html">Workshoplar</a></li><li><a href="yurt-disi-portfolyo.html">Portfolyo</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="blog.html">Blog</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="index.html#iletisim">İletişim</a></li>
   </ul>
   <a href="yetenek-testi.html" class="btn btn--primary">Yetenek Testi'ni Çöz</a>
   <div class="mobile-nav__contact">Hemen ara: <a href="tel:+905425983374">0542 598 33 74</a></div>
 </aside>
 <main>
-
-<section class="page-hero"><div class="container">
-  <div class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <span>Çıkmış Sorular</span></div>
-  <span class="kicker">2024–2025 Arşivi</span>
-  <h1>Güzel sanatlar <em>çıkmış sınav soruları</em></h1>
-  <p class="page-hero__lead">Mimar Sinan ve Marmara Güzel Sanatlar Fakültesi yetenek sınavlarında çıkan güncel soruları, çözüm ipuçlarıyla birlikte derledik. Çizip deneyebilir, yüz yüze görüşmede getirip birlikte yorumlayabilirsiniz.</p>
-</div></section>
-<section class="section"><div class="container">
-  <div class="exam-layout">
-    <div>
-      <div class="block-head reveal"><span class="kicker">Üniversiteye Göre</span><h2 class="section-title">Sınav arşivini seç</h2></div>
-      <div class="exam-cards">
-      <a class="exam-card reveal" href="mimar-sinan-cikmis-sorular.html">
-        <div class="exam-card__uni">Mimar Sinan GSF (MSGSÜ)</div>
-        <div class="exam-card__meta">2024–2025 · Resim · Heykel · Seramik · Sahne · Moda · Geleneksel ve Grafik–Animasyon bölümleri için</div>
-        <div class="exam-card__count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 13 çıkmış soru + çözüm ipuçları</div>
-        <div class="exam-card__more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      <a class="exam-card reveal" href="marmara-cikmis-sorular.html">
-        <div class="exam-card__uni">Marmara GSF</div>
-        <div class="exam-card__meta">2024–2025 · Resim · Heykel · Tekstil · Geleneksel · Seramik ve Grafik bölümleri için</div>
-        <div class="exam-card__count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 16 çıkmış soru + çözüm ipuçları</div>
-        <div class="exam-card__more">İncele <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
-      </div>
-      <div class="exam-note reveal">Senelere ve okulların ekollerine göre sorular değişkenlik gösterse de; temelde <b>çizgi, oran-orantı, perspektif ve açık-koyu</b> gibi sanatın giriş konularından beklentiyle sorular sorulur. Bu soruları en doğru şekilde ve doğru yöntemle çözmeyi, <b>18 yıllık tecrübe ve vizyonla</b> öğrencilerimize aktarıyoruz.</div>
-    </div>
-    <aside>
-      <div class="sidebar-cta">
-        <img src="assets/img/logo-badge.png" alt="" style="width:64px;height:64px;margin:0 auto 18px">
-        <h3>Bu soruları çözmeyi öğren</h3>
-        <p>Bireysel programımızla çıkmış soruları adım adım çalışıyor, deneme sınavlarıyla sınav pratiği kazanıyorsun.</p>
-        <a href="gsf-hazirlik.html" class="btn btn--primary" style="width:100%">GSF Hazırlık'ı İncele</a>
-        <a href="yetenek-testi.html" class="btn btn--outline-light" style="width:100%;margin-top:10px">Yetenek Testi'ni Çöz</a>
-      </div>
-    </aside>
-  </div>
-</div></section>
+${o.main}
 </main>
 <footer class="footer"><div class="container">
   <div class="footer__grid">
     <div><div class="footer__brand"><img src="assets/img/logo-badge.png" alt="Gri Akademi"><span class="brand__text"><span class="brand__name">Gri Akademi</span><span class="brand__sub">Sanat Kursu</span></span></div><p>2008'den beri Bakırköy'de güzel sanatlara hazırlık ve sanat eğitimi. Bakmayı değil görmeyi öğreten, yaşayan bir atölye.</p></div>
     <div><h4>Programlar</h4><ul><li><a href="gsf-hazirlik.html">GSF Hazırlık</a></li><li><a href="gsl-hazirlik.html">GSL Hazırlık</a></li><li><a href="hobi-resim.html">Hobi Resim</a></li><li><a href="seramik-heykel.html">Seramik & Heykel</a></li><li><a href="vitray.html">Vitray</a></li></ul></div>
-    <div><h4>Kurumsal</h4><ul><li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="index.html#galeri">Galeri</a></li><li><a href="index.html#iletisim">İletişim</a></li></ul></div>
+    <div><h4>Kurumsal</h4><ul><li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="blog.html">Blog</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="index.html#iletisim">İletişim</a></li></ul></div>
     <div><h4>İletişim</h4><ul class="footer__contact">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Zeytinlik Mah. Pancar Sok. No:19, Bakırköy</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.86.68 2.75a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.32 1.81.55 2.75.68A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+902129657077">0212 965 70 77</a></li>
@@ -106,4 +82,58 @@
 <a class="wa-float" href="https://wa.me/905425983374" target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.77-1.67-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg></a>
 <script src="assets/js/main.js"></script>
 </body>
-</html>
+</html>`;
+}
+
+/* ---- blog index ---- */
+function buildIndex() {
+  const cards = POSTS.map(p => `
+      <a class="post-card reveal" href="blog-${p.slug}.html">
+        <span class="post-card__cat">${p.kategori}</span>
+        <h2 class="post-card__title">${p.title}</h2>
+        <p class="post-card__excerpt">${p.excerpt}</p>
+        <div class="post-card__meta">${svgClock} ${p.readMinutes} dk okuma</div>
+        <span class="post-card__more">Yazıyı Oku ${svgArrow}</span>
+      </a>`).join('');
+  const main = `
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <span>Blog</span></div>
+  <span class="kicker">Rehberler & İpuçları</span>
+  <h1>Gri Akademi <em>Blog</em></h1>
+  <p class="page-hero__lead">Yetenek sınavı hazırlığı, portfolyo, teknik ipuçları ve atölye rehberleri. 18 yıllık tecrübemizden faydalı, güncel içerikler.</p>
+</div></section>
+<section class="section"><div class="container">
+  <div class="blog-grid">${cards}
+  </div>
+</div></section>`;
+  return shell({ title: 'Blog — Sanat Eğitimi Rehberleri & İpuçları | Gri Akademi', desc: 'Güzel sanatlar yetenek sınavı hazırlığı, portfolyo, karakalem ve atölye rehberleri. Gri Akademi\'nin 18 yıllık tecrübesinden faydalı içerikler.', slug: 'blog.html', active: 'blog', main });
+}
+
+/* ---- post ---- */
+function buildPost(p, i) {
+  const others = POSTS.filter((_, j) => j !== i).slice(0, 2);
+  const schema = `<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(p.title)},"description":${JSON.stringify(p.seoDesc)},"author":{"@type":"Organization","name":"Gri Akademi Sanat Kursu"},"publisher":{"@type":"Organization","name":"Gri Akademi Sanat Kursu"}}</script>`;
+  const ilgili = others.map(o => `<a class="post-card reveal" href="blog-${o.slug}.html"><span class="post-card__cat">${o.kategori}</span><h2 class="post-card__title">${o.title}</h2><p class="post-card__excerpt">${o.excerpt}</p><span class="post-card__more">Yazıyı Oku ${svgArrow}</span></a>`).join('');
+  const main = `
+<section class="page-hero"><div class="container" style="max-width:760px;margin:0 auto">
+  <div class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <a href="blog.html">Blog</a> / <span>${p.kategori}</span></div>
+  <div class="article__meta"><span class="article__cat">${p.kategori}</span><span>${svgClock} ${p.readMinutes} dk okuma</span></div>
+  <h1 style="font-size:clamp(1.9rem,4.4vw,3rem)">${p.title}</h1>
+</div></section>
+<section class="section" style="padding-top:clamp(28px,4vw,44px)"><div class="container">
+  <article class="article"><div class="article__body">
+${p.bodyHtml}
+  </div></article>
+  <div class="article__foot"><a class="back" href="blog.html">${svgBack} Tüm yazılar</a><a href="index.html#iletisim" class="btn btn--primary">Ücretsiz Deneme Dersi</a></div>
+</div></section>
+<section class="section" style="padding-top:0"><div class="container">
+  <div class="block-head reveal"><span class="kicker">Devamı</span><h2 class="section-title">İlgili yazılar</h2></div>
+  <div class="blog-grid" style="grid-template-columns:1fr 1fr">${ilgili}</div>
+</div></section>`;
+  return shell({ title: `${p.title} | Gri Akademi Blog`, desc: p.seoDesc, slug: `blog-${p.slug}.html`, ogType: 'article', main, schema });
+}
+
+fs.writeFileSync(path.join(ROOT, 'blog.html'), buildIndex(), 'utf8');
+console.log('yazıldı: blog.html (index, ' + POSTS.length + ' yazı)');
+POSTS.forEach((p, i) => { fs.writeFileSync(path.join(ROOT, `blog-${p.slug}.html`), buildPost(p, i), 'utf8'); console.log('yazıldı: blog-' + p.slug + '.html'); });
+console.log('TAMAM.');
