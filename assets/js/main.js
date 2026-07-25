@@ -93,7 +93,7 @@
   });
 
   /* ---------- galeri lightbox ---------- */
-  const items = Array.from(document.querySelectorAll('.gallery__item, .proc-item'));
+  const items = Array.from(document.querySelectorAll('.gallery__item, .proc-item, .flow-step'));
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   let idx = 0;
