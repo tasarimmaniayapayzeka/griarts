@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className+=" js";</script>
+<title>Portalım | Gri Akademi</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/portal.css">
+</head>
+<body class="portal">
+
+<div class="demo-ribbon"><span>DEMO PORTAL · Örnek verilerle hazırlanmıştır</span></div>
+<div class="pscrim" id="pscrim"></div>
+
+<div class="pshell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="psidebar" id="psidebar">
+    <a class="psidebar__brand" href="index.html">
+      <img src="assets/img/logo-badge.png" alt="Gri Akademi">
+      <span><b>Gri Akademi</b><small>Portalım</small></span>
+    </a>
+
+    <div class="psidebar__group">
+      <div class="psidebar__label">Panelim</div>
+      <ul class="pnav">
+        <li><a href="#ozet" data-view="ozet" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg> Genel Bakış</a></li>
+        <li><a href="#gelisim" data-view="gelisim" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> <span data-label-gelisim>Gelişim Defteri</span></a></li>
+        <li><a href="#program" data-view="program" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span data-label-program>Ders Programım</span></a></li>
+      </ul>
+    </div>
+
+    <div class="psidebar__group only-ogrenci">
+      <div class="psidebar__label">Sınav Hazırlık</div>
+      <ul class="pnav">
+        <li><a href="#sinav" data-view="sinav" data-role="ogrenci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Hedef & Deneme</a></li>
+        <li><a href="#kaynak" data-view="kaynak" data-role="ogrenci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Kaynak Kütüphanesi</a></li>
+        <li><a href="#belge" data-view="belge" data-role="ogrenci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Belgelerim</a></li>
+      </ul>
+    </div>
+
+    <div class="psidebar__group only-veli">
+      <div class="psidebar__label">Veli İşlemleri</div>
+      <ul class="pnav">
+        <li><a href="#odeme" data-view="odeme" data-role="veli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Ödeme & Aidat</a></li>
+        <li><a href="#mesaj" data-view="mesaj" data-role="veli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Eğitmenle Mesaj <span class="pnav__badge">1</span></a></li>
+      </ul>
+    </div>
+
+    <div class="psidebar__foot">
+      <ul class="pnav">
+        <li><a href="#profil" data-view="profil" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profilim</a></li>
+      </ul>
+      <a href="#" id="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Çıkış Yap</a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="pmain">
+    <header class="ptopbar">
+      <button class="ptopbar__burger" id="burger" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="ptopbar__title">
+        <h1 id="viewTitle">Genel Bakış</h1>
+        <p id="viewSub">Merhaba, tekrar hoş geldin 👋</p>
+      </div>
+      <div class="ptopbar__spacer"></div>
+      <a class="ptopbar__icon" href="#" onclick="return false" aria-label="Bildirimler"><span class="dot"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></a>
+      <div class="pchip">
+        <span class="avatar" id="chipAvatar">ED</span>
+        <span><b id="chipName">Elif Demir</b><small id="chipRole">Öğrenci · GSF Hazırlık</small></span>
+      </div>
+    </header>
+
+    <div class="pcontent">
+
+      <!-- ========== GENEL BAKIŞ ========== -->
+      <section class="pview is-active" data-view="ozet">
+        <div class="pgrid pgrid--4" style="margin-bottom:18px">
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="stat__num">14<small>/48</small></div><div class="stat__lbl">Tamamlanan ders</div><div class="stat__trend up">%29 ilerleme</div></div>
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><div class="stat__num">18</div><div class="stat__lbl">Yüklenen çalışma</div><div class="stat__trend up">+3 bu hafta</div></div>
+          <div class="stat only-ogrenci"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div class="stat__num">82<small>/100</small></div><div class="stat__lbl">Son deneme puanı</div><div class="stat__trend up">+6 puan</div></div>
+          <div class="stat only-veli"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><div class="stat__num">1</div><div class="stat__lbl">Bekleyen ödeme</div><div class="stat__trend warn">Kasım taksiti</div></div>
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></span><div class="stat__num">2</div><div class="stat__lbl">Devamsızlık (48'de)</div><div class="stat__trend up">Sınır içinde</div></div>
+        </div>
+
+        <div class="pgrid pgrid--2">
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>Sıradaki ders</h3></div>
+            <p style="color:var(--chalk);font-size:1.05rem;margin:0 0 6px"><b>Karakalem — İleri Ton Çalışması</b></p>
+            <p class="section-note" style="margin:0 0 16px">Çarşamba, 17:00 – 20:00 · Atölye 1 · Eğitmen: Selin Hoca</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a href="#program" data-jump="program" class="btn btn--dark" style="padding:11px 20px;font-size:.86rem">Programı Gör</a>
+              <a href="https://wa.me/905425983374" target="_blank" rel="noopener" class="btn btn--ghost" style="padding:11px 20px;font-size:.86rem">Telafi / Erteleme</a>
+            </div>
+          </div>
+
+          <div class="pcard only-ogrenci">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><h3>Hedefine ilerleme</h3></div>
+            <p class="section-note" style="margin:-6px 0 14px">Hedef: <b style="color:var(--chalk)">MSGSÜ Resim Bölümü</b></p>
+            <div class="progress"><div class="progress__bar"><div class="progress__fill" style="width:66%"></div></div><div class="progress__meta"><span>Şu anki seviye: İleri Başlangıç</span><span>%66</span></div></div>
+            <a href="#sinav" data-jump="sinav" class="btn btn--dark" style="padding:11px 20px;font-size:.86rem;margin-top:16px">Yol Haritasını Aç</a>
+          </div>
+
+          <div class="pcard only-veli">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><h3>Çocuğunuzun durumu</h3></div>
+            <p style="color:var(--chalk);margin:0 0 6px"><b>Elif Demir</b> — GSF Hazırlık</p>
+            <p class="section-note" style="margin:0 0 14px">Bu ay 6 dersin 6'sına katıldı. Son eğitmen notu: <i>"Ton geçişlerinde belirgin ilerleme var."</i></p>
+            <a href="#mesaj" data-jump="mesaj" class="btn btn--dark" style="padding:11px 20px;font-size:.86rem">Eğitmene Yaz</a>
+          </div>
+        </div>
+
+        <div class="pcard" style="margin-top:18px">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg></span><h3>Son hareketler</h3></div>
+          <ul class="rlist">
+            <li class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><div><b>Yeni çalışma yüklendi — "Antinous büst etüdü"</b><span>2 gün önce · Selin Hoca not ekledi</span></div></li>
+            <li class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div><b>5. Deneme sınavı sonucu açıklandı — 82/100</b><span>5 gün önce · +6 puan artış</span></div></li>
+            <li class="ritem"><span class="ritem__ic vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><div><b>Yeni kaynak: "Işık-Gölge Temeli" video dersi eklendi</b><span>1 hafta önce · Kaynak Kütüphanesi</span></div></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========== GELİŞİM DEFTERİ ========== -->
+      <section class="pview" data-view="gelisim">
+        <div class="pcard" style="margin-bottom:18px">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20l9-5-9-5-9 5 9 5z"/><path d="M12 12V2"/></svg></span><h3>İlk günden bugüne</h3></div>
+          <div class="beforeafter">
+            <figure><img class="zoom" src="assets/img/ai/karakalem-adim-2.jpg" alt="İlk hafta çalışması"><figcaption><b>1. Hafta</b>İlk kontur denemesi · Eylül</figcaption></figure>
+            <div class="beforeafter__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg></div>
+            <figure><img class="zoom" src="assets/img/ai/karakalem-adim-6.jpg" alt="12. hafta çalışması"><figcaption><b>12. Hafta</b>Tamamlanmış büst etüdü · Aralık</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="gtimeline">
+          <article class="gentry">
+            <div class="gentry__img zoom" data-full="assets/img/ai/karakalem-adim-6.jpg"><span class="gentry__wk">12. Hafta</span><img src="assets/img/ai/karakalem-adim-6.jpg" alt="Antinous büst etüdü"></div>
+            <div class="gentry__body"><h4>Antinous büst etüdü</h4><p class="gentry__date">18 Aralık 2025 · Karakalem</p>
+              <div class="gnote"><small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Selin Hoca</small><p>Ton geçişleri çok temiz olmuş; alnın en açık değeri ile göz çukurunun kontrastı artık doğru. Sonraki adımda saç kütlesinde detaya boğulmadan büyük formu koruyalım.</p></div>
+            </div>
+          </article>
+          <article class="gentry">
+            <div class="gentry__img zoom" data-full="assets/img/ai/karakalem-adim-5.jpg"><span class="gentry__wk">8. Hafta</span><img src="assets/img/ai/karakalem-adim-5.jpg" alt="Göz ve detay çalışması"></div>
+            <div class="gentry__body"><h4>Göz & detay çalışması</h4><p class="gentry__date">20 Kasım 2025 · Karakalem</p>
+              <div class="gnote"><small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Selin Hoca</small><p>Detaya geçişte sabırlısın, güzel. Kalem ucunu daha sık sivrilt; çizgi kalitesi ton kadar önemli.</p></div>
+            </div>
+          </article>
+          <article class="gentry">
+            <div class="gentry__img zoom" data-full="assets/img/ai/karakalem-adim-3.jpg"><span class="gentry__wk">4. Hafta</span><img src="assets/img/ai/karakalem-adim-3.jpg" alt="Blok gölge çalışması"></div>
+            <div class="gentry__body"><h4>Blok gölge çalışması</h4><p class="gentry__date">16 Ekim 2025 · Karakalem</p>
+              <div class="gnote"><small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Selin Hoca</small><p>Işık yönünü tek kaynakta tutman büyük ilerleme. Gölgeleri kütle hâlinde kur, satırlama sonra gelsin.</p></div>
+            </div>
+          </article>
+          <article class="gentry">
+            <div class="gentry__img zoom" data-full="assets/img/ai/karakalem-adim-2.jpg"><span class="gentry__wk">1. Hafta</span><img src="assets/img/ai/karakalem-adim-2.jpg" alt="İlk kontur denemesi"></div>
+            <div class="gentry__body"><h4>İlk kontur denemesi</h4><p class="gentry__date">18 Eylül 2025 · Karakalem</p>
+              <div class="gnote"><small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Selin Hoca</small><p>Güzel bir başlangıç! Ölçü-oranda acele etmeyelim; büyük şekli oturtmadan detaya geçme. İyi yoldasın.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========== DERS PROGRAMI ========== -->
+      <section class="pview" data-view="program">
+        <div class="pcard">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><h3>Haftalık ders programı</h3><a href="https://wa.me/905425983374" target="_blank" rel="noopener" class="btn btn--primary" style="padding:10px 18px;font-size:.84rem">Telafi Talep Et</a></div>
+          <div style="overflow-x:auto">
+            <table class="ptable">
+              <thead><tr><th>Gün</th><th>Saat</th><th>Ders</th><th>Atölye</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td class="day">Pazartesi</td><td>17:00–20:00</td><td>Karakalem — Temel Etüt</td><td>Atölye 1</td><td><span class="badge badge--ok">Katıldı</span></td></tr>
+                <tr><td class="day">Çarşamba</td><td>17:00–20:00</td><td>Karakalem — İleri Ton</td><td>Atölye 1</td><td><span class="badge badge--info">Sıradaki</span></td></tr>
+                <tr><td class="day">Cumartesi</td><td>11:00–14:00</td><td>İmgesel & Kompozisyon</td><td>Atölye 2</td><td><span class="badge badge--muted">Planlı</span></td></tr>
+                <tr><td class="day">Cumartesi</td><td>14:30–16:00</td><td>Sanat Tarihi (teori)</td><td>Seminer</td><td><span class="badge badge--muted">Planlı</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pgrid pgrid--2" style="margin-top:18px">
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><h3>Devam durumu</h3></div>
+            <div class="progress"><div class="progress__bar"><div class="progress__fill" style="width:96%"></div></div><div class="progress__meta"><span>46 / 48 derse katılım</span><span>%96</span></div></div>
+            <p class="section-note" style="margin-top:14px">2 devamsızlık kullanıldı, telafi hakkın devam ediyor. Sınırın altındasın 👍</p>
+          </div>
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Atölye konumu</h3></div>
+            <p style="color:var(--chalk);margin:0 0 4px"><b>Gri Akademi</b></p>
+            <p class="section-note" style="margin:0 0 14px">Zeytinlik Mah. Pancar Sok. No:19, Bakırköy / İstanbul</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Gri%20Akademi%20Sanat%20Kursu%20Bak%C4%B1rk%C3%B6y" target="_blank" rel="noopener" class="btn btn--dark" style="padding:10px 18px;font-size:.84rem">Yol Tarifi Al</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SINAV HAZIRLIK (öğrenci) ========== -->
+      <section class="pview" data-view="sinav">
+        <div class="pgrid pgrid--2">
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><h3>Deneme sınavı gelişimi</h3></div>
+            <div class="chart">
+              <svg viewBox="0 0 500 220" role="img" aria-label="Deneme sınavı puan grafiği">
+                <!-- ızgara -->
+                <g stroke="rgba(236,234,227,.10)" stroke-width="1">
+                  <line x1="40" y1="20" x2="490" y2="20"/><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="120" x2="490" y2="120"/><line x1="40" y1="170" x2="490" y2="170"/>
+                </g>
+                <!-- hedef çizgisi (85) -->
+                <line x1="40" y1="44" x2="490" y2="44" stroke="#EEB86B" stroke-width="1.4" stroke-dasharray="5 5"/>
+                <text x="486" y="38" text-anchor="end" fill="#EEB86B" font-size="11" font-family="Inter">Hedef 85</text>
+                <!-- barlar -->
+                <g fill="url(#barg)">
+                  <rect x="60"  y="107.2" width="46" height="62.8" rx="5"/>
+                  <rect x="146" y="97.6"  width="46" height="72.4" rx="5"/>
+                  <rect x="232" y="86.4"  width="46" height="83.6" rx="5"/>
+                  <rect x="318" y="78.4"  width="46" height="91.6" rx="5"/>
+                  <rect x="404" y="68.8"  width="46" height="101.2" rx="5"/>
+                </g>
+                <defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0A24E"/><stop offset="1" stop-color="#B77E2F"/></linearGradient></defs>
+                <!-- değerler -->
+                <g fill="#ECEAE3" font-size="13" font-family="Fraunces" text-anchor="middle" font-weight="600">
+                  <text x="83" y="100">58</text><text x="169" y="90">64</text><text x="255" y="79">71</text><text x="341" y="71">76</text><text x="427" y="61">82</text>
+                </g>
+                <!-- etiketler -->
+                <g fill="#868C86" font-size="11" font-family="Inter" text-anchor="middle">
+                  <text x="83" y="188">1. Deneme</text><text x="169" y="188">2. Deneme</text><text x="255" y="188">3. Deneme</text><text x="341" y="188">4. Deneme</text><text x="427" y="188">5. Deneme</text>
+                </g>
+              </svg>
+            </div>
+            <div class="chart__legend"><span><i style="background:#E0A24E"></i>Aldığın puan</span><span><i style="background:#EEB86B"></i>Hedef puan (85)</span></div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><h3>Hedefe giden yol haritası</h3></div>
+            <p class="section-note" style="margin:-6px 0 16px">Hedef: <b style="color:var(--chalk)">MSGSÜ Resim Bölümü</b></p>
+            <ul class="roadmap">
+              <li class="done"><span class="roadmap__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><b>Temel çizgi & oran-orantı</b><span>Tamamlandı</span></li>
+              <li class="done"><span class="roadmap__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><b>Işık-gölge & ton</b><span>Tamamlandı</span></li>
+              <li class="done"><span class="roadmap__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><b>Alçı büst etütleri</b><span>Tamamlandı</span></li>
+              <li class="now"><span class="roadmap__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="4"/></svg></span><b>İmgesel & kompozisyon</b><span>Şu an buradasın</span></li>
+              <li><span class="roadmap__dot"></span><b>Portfolyo derleme</b><span>Sırada</span></li>
+              <li><span class="roadmap__dot"></span><b>Sınav provaları & final</b><span>Sırada</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pgrid pgrid--2" style="margin-top:18px">
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h3>Çözümlü çıkmış sorular</h3></div>
+            <div class="rlist">
+              <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>MSGSÜ 2024 — Desen</b><span>Çözüm + video anlatım</span></div><a href="mimar-sinan-cikmis-sorular.html" class="btn btn--dark">Çöz</a></div>
+              <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Marmara GSF 2023 — İmgesel</b><span>Çözüm + jüri beklentisi</span></div><a href="marmara-cikmis-sorular.html" class="btn btn--dark">Çöz</a></div>
+              <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Tüm çıkmış sorular arşivi</b><span>29 soru · yıllara göre</span></div><a href="cikmis-sorular.html" class="btn btn--dark">Arşiv</a></div>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><h3>Portfolyo oluşturucu</h3></div>
+            <p class="section-note" style="margin:-6px 0 14px">Başvuru dosyana girecek en iyi çalışmaları seç. <b id="pfCount" style="color:var(--amber)">3</b> çalışma seçili.</p>
+            <div class="pfgrid" id="pfGrid">
+              <div class="pfitem sel"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/ai/karakalem-adim-6.jpg" alt=""></div>
+              <div class="pfitem sel"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/ai/karakalem-adim-5.jpg" alt=""></div>
+              <div class="pfitem sel"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/galeri-03.jpg" alt=""></div>
+              <div class="pfitem"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/ai/karakalem-adim-3.jpg" alt=""></div>
+              <div class="pfitem"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/galeri-10.jpg" alt=""></div>
+              <div class="pfitem"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/galeri-13.jpg" alt=""></div>
+              <div class="pfitem"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/galeri-07.jpg" alt=""></div>
+              <div class="pfitem"><span class="pfitem__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><img src="assets/img/galeri-14.jpg" alt=""></div>
+            </div>
+            <button class="btn btn--primary" style="margin-top:16px;padding:11px 20px;font-size:.86rem">Portfolyo Önizle (PDF)</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== KAYNAK KÜTÜPHANESİ (öğrenci) ========== -->
+      <section class="pview" data-view="kaynak">
+        <div class="pcard">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Föyler & notlar (PDF)</h3></div>
+          <div class="rlist">
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Ölçü-Oran Föyü</b><span>PDF · 8 sayfa</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Işık-Gölge & Değer Föyü</b><span>PDF · 12 sayfa</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Perspektif Temelleri</b><span>PDF · 10 sayfa</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Sanat Tarihi — Sınav Notları</b><span>PDF · 24 sayfa</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+          </div>
+        </div>
+        <div class="pcard" style="margin-top:18px">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><h3>Video ders tekrarları</h3></div>
+          <div class="rlist">
+            <div class="ritem"><span class="ritem__ic vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><div><b>Karakalem Temeli — Kalem Tutuşu & Çizgi</b><span>18:24 · izlendi</span></div><a href="#" onclick="return false" class="btn btn--dark">İzle</a></div>
+            <div class="ritem"><span class="ritem__ic vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><div><b>Işık-Gölge Temeli</b><span>22:10 · yeni</span></div><a href="#" onclick="return false" class="btn btn--dark">İzle</a></div>
+            <div class="ritem"><span class="ritem__ic vid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><div><b>Alçı Büst Etüdüne Başlangıç</b><span>26:47</span></div><a href="#" onclick="return false" class="btn btn--dark">İzle</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== BELGELER (öğrenci) ========== -->
+      <section class="pview" data-view="belge">
+        <div class="pcard">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Belgelerim</h3></div>
+          <div class="pinfo" style="margin-bottom:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Gri Akademi T.C. M.E.B. onaylı bir kurumdur; katılım belgen resmî geçerliliğe sahiptir.</div>
+          <div class="rlist">
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Öğrenci Belgesi</b><span>Güncel · PDF</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+            <div class="ritem"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><div><b>Kayıt Sözleşmesi</b><span>İmzalı kopya · PDF</span></div><a href="#" onclick="return false" class="btn btn--dark">İndir</a></div>
+            <div class="ritem" style="opacity:.6"><span class="ritem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Katılım Sertifikası (MEB Onaylı)</b><span>Program tamamlanınca açılır · %66</span></div><span class="badge badge--muted">Yakında</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== ÖDEME & AİDAT (veli) ========== -->
+      <section class="pview" data-view="odeme">
+        <div class="pgrid pgrid--3" style="margin-bottom:18px">
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></span><div class="stat__num">4</div><div class="stat__lbl">Ödenen taksit</div></div>
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="stat__num">1</div><div class="stat__lbl">Bekleyen taksit</div><div class="stat__trend warn">Son gün: 25 Kasım</div></div>
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><div class="stat__num">5</div><div class="stat__lbl">Kalan taksit</div></div>
+        </div>
+        <div class="pcard">
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><h3>Ödeme planı — Elif Demir</h3></div>
+          <div style="overflow-x:auto">
+            <table class="ptable">
+              <thead><tr><th>Dönem</th><th>Vade</th><th>Tutar</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td class="day">Eylül</td><td>25.09.2025</td><td>Taksit</td><td><span class="badge badge--ok">Ödendi</span></td></tr>
+                <tr><td class="day">Ekim</td><td>25.10.2025</td><td>Taksit</td><td><span class="badge badge--ok">Ödendi</span></td></tr>
+                <tr><td class="day">Kasım</td><td>25.11.2025</td><td>Taksit</td><td><span class="badge badge--wait">Bekliyor</span></td></tr>
+                <tr><td class="day">Aralık</td><td>25.12.2025</td><td>Taksit</td><td><span class="badge badge--muted">Planlı</span></td></tr>
+                <tr><td class="day">Ocak</td><td>25.01.2026</td><td>Taksit</td><td><span class="badge badge--muted">Planlı</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pinfo" style="margin-top:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Ödemeler kurum ofisinden veya banka havalesiyle alınır. Bu ekran yalnızca <b>bilgilendirme</b> amaçlıdır; portal üzerinden tahsilat yapılmaz.</div>
+        </div>
+      </section>
+
+      <!-- ========== MESAJLAŞMA (veli) ========== -->
+      <section class="pview" data-view="mesaj">
+        <div class="pcard">
+          <div class="pcard__head"><span class="avatar" style="width:40px;height:40px">SH</span><div><h3 style="font-size:1.05rem">Selin Hoca</h3><p class="section-note" style="margin:2px 0 0">Elif'in eğitmeni · genellikle aynı gün yanıtlar</p></div></div>
+          <div class="chat" id="chat">
+            <div class="bubble them">Merhaba Ayşe Hanım, Elif bu hafta ton çalışmasında gerçekten güzel ilerledi. 👏<small>Pazartesi 19:12</small></div>
+            <div class="bubble me">Çok teşekkürler, evde de bahsediyor. Deneme sınavı sonucu ne zaman belli olur?<small>Pazartesi 20:03</small></div>
+            <div class="bubble them">Cuma günü sisteme yüklenecek, "Genel Bakış" ekranından da görebileceksiniz. Bu ay hedefe çok yaklaştı.<small>Pazartesi 20:20</small></div>
+          </div>
+          <form class="chatbar" id="chatbar">
+            <input type="text" placeholder="Bir mesaj yaz…" aria-label="Mesaj">
+            <button type="submit" aria-label="Gönder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ========== PROFİL ========== -->
+      <section class="pview" data-view="profil">
+        <div class="pcard">
+          <div class="profile-head">
+            <span class="avatar" id="profAvatar">ED</span>
+            <div>
+              <h3 id="profName">Elif Demir</h3>
+              <p class="section-note" style="margin:4px 0 0" id="profRole">Öğrenci · GSF Hazırlık Programı</p>
+            </div>
+            <a href="https://wa.me/905425983374" target="_blank" rel="noopener" class="btn btn--dark" style="margin-left:auto;padding:11px 20px;font-size:.86rem">Bilgi Güncelle</a>
+          </div>
+          <dl class="deflist" id="profList">
+            <div><dt>Program</dt><dd>GSF Hazırlık</dd></div>
+            <div><dt>Hedef</dt><dd>MSGSÜ Resim Bölümü</dd></div>
+            <div><dt>Başlangıç</dt><dd>Eylül 2025</dd></div>
+            <div><dt>Eğitmen</dt><dd>Selin Hoca</dd></div>
+            <div><dt>E-posta</dt><dd>ogrenci@griarts.com</dd></div>
+            <div><dt>Telefon</dt><dd>0542 5•• •• 74</dd></div>
+          </dl>
+          <div class="pinfo" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Kişisel verilerin KVKK kapsamında korunur; yalnızca eğitim süreci için kullanılır. Küçük öğrencilerde veli açık rızası esastır.</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox (gelişim defteri) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox__close" id="lbClose" aria-label="Kapat">✕</button>
+  <img id="lbImg" src="" alt="Büyütülmüş çalışma">
+</div>
+
+<script src="assets/js/portal.js"></script>
+</body>
+</html>
