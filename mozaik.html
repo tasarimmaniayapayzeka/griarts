@@ -11,7 +11,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bakırköy Mozaik Atölyesi — Gri Akademi">
 <meta property="og:description" content="Cam ve taşı sabırla sanata dönüştürün. Tek günde kendi mozaik panonuzu yapın. Malzeme dahil, ücretsiz deneme dersi.">
-<meta property="og:image" content="assets/img/og-cover.png">
+<meta property="og:url" content="https://www.griarts.com/mozaik.html">
+<meta property="og:image" content="https://www.griarts.com/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -164,6 +166,7 @@
         <input type="text" name="ad" placeholder="Adınız" required>
         <input type="tel" name="tel" placeholder="Telefon" required>
         <input type="email" name="eposta" placeholder="E-posta">
+            <label class="consent"><input type="checkbox" name="kvkk" id="kvkk-1" value="1" required><span><a href="kvkk-aydinlatma.html" target="_blank" rel="noopener">Aydınlatma metnini</a> okudum; bilgilerimin benimle iletişim kurulması amacıyla işlenmesini onaylıyorum.</span></label>
         <button type="submit" class="btn btn--primary">Bilgi İste</button>
       </form>
     </div>
@@ -280,6 +283,7 @@
           <div class="field"><label for="proje">İlgilendiğiniz proje</label><select id="proje" name="proje"><option value="">Seçiniz…</option><option>Mozaik Pano</option><option>Mozaik Tabak</option><option>Ayna Çerçevesi</option><option>Günlük Workshop</option><option>Haftalık Program</option><option>Grup / Özel Gün Etkinliği</option></select></div>
           <div class="field"><label for="kaynak">Bizi nereden duydunuz?</label><select id="kaynak" name="kaynak"><option value="">Seçiniz…</option><option>Google</option><option>Instagram</option><option>Tavsiye</option><option>Reklam</option><option>Diğer</option></select></div>
           <div class="field"><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" placeholder="Yapmak istediğiniz eser, kişi sayısı, uygun günleriniz…"></textarea></div>
+            <label class="consent"><input type="checkbox" name="kvkk" id="kvkk-2" value="1" required><span><a href="kvkk-aydinlatma.html" target="_blank" rel="noopener">Aydınlatma metnini</a> okudum; bilgilerimin benimle iletişim kurulması amacıyla işlenmesini onaylıyorum.</span></label>
           <button type="submit" class="btn btn--primary">Ücretsiz Deneme Dersi Talep Et</button>
           <p class="form__note">Bilgileriniz yalnızca sizinle iletişim kurmak için kullanılır.</p>
         </form>
@@ -358,5 +362,6 @@
 </div>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/form.js"></script>
 </body>
 </html>

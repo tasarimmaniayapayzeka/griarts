@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /ogrenci-panel.html
+Disallow: /ogrenci-giris.html
+Disallow: /_talepler/
+
+Sitemap: https://www.griarts.com/sitemap.xml

@@ -821,3 +821,39 @@ h1 em, h2 em, .page-hero h1 em{
 .article__foot a.back{ color:var(--muted); display:inline-flex; align-items:center; gap:8px; font-weight:600; }
 .article__foot a.back:hover{ color:var(--amber); }
 .article__foot a.back svg{ width:16px; height:16px; }
+
+/* =========================================================
+   FORM DURUM KUTULARI + KVKK AÇIK RIZA
+   ========================================================= */
+.form-durum{
+  display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+  padding:16px 18px; border-radius:var(--radius-lg); margin:0 0 18px;
+  border:1px solid var(--line-2); background:var(--night-2);
+}
+.form-durum b{ font-family:var(--serif); font-size:1.08rem; color:var(--chalk); }
+.form-durum span{ color:var(--chalk-2); font-size:.92rem; line-height:1.55; }
+.form-durum .btn{ margin-top:4px; padding:11px 20px; font-size:.88rem; }
+.form-durum--ok{ border-color:rgba(127,201,154,.4); background:rgba(127,201,154,.10); }
+.form-durum--ok b{ color:#7fc99a; }
+.form-durum--uyari{ border-color:rgba(224,162,78,.4); background:var(--amber-wash); }
+.form-durum--uyari b{ color:var(--amber-2); }
+.form-durum--hata{ border-color:rgba(230,133,127,.45); background:rgba(230,133,127,.10); }
+.form-durum--hata b{ color:#e6857f; }
+
+.consent{
+  display:flex; align-items:flex-start; gap:10px; margin:4px 0 16px;
+  font-size:.85rem; line-height:1.5; color:var(--chalk-2); cursor:pointer;
+}
+.consent input{ margin:2px 0 0; width:17px; height:17px; flex:none; accent-color:var(--amber); cursor:pointer; }
+.consent a{ color:var(--amber); text-decoration:underline; text-underline-offset:2px; }
+.consent a:hover{ color:var(--amber-2); }
+.miniwidget .consent{ font-size:.8rem; margin:2px 0 12px; }
+
+/* yasal metin sayfası */
+.legal{ max-width:780px; margin:0 auto; }
+.legal h2{ font-size:1.45rem; margin:34px 0 12px; }
+.legal h3{ font-size:1.1rem; margin:24px 0 8px; color:var(--amber); }
+.legal p, .legal li{ color:var(--chalk-2); font-size:1rem; line-height:1.75; }
+.legal ul{ padding-left:20px; }
+.legal li{ margin:0 0 8px; }
+.legal__meta{ color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); padding-top:16px; margin-top:34px; }

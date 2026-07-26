@@ -117,30 +117,10 @@
     if (e.key === 'ArrowRight') show(idx + 1);
   });
 
-  /* ---------- iletişim formu (demo) ---------- */
-  const form = document.getElementById('contactForm');
-  form && form.addEventListener('submit', e => {
-    e.preventDefault();
-    const ok = document.getElementById('formOk');
-    const ad = form.querySelector('#ad'), tel = form.querySelector('#tel');
-    if (!ad.value.trim() || !tel.value.trim()) {
-      (!ad.value.trim() ? ad : tel).focus();
-      return;
-    }
-    if (ok) { ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    form.reset();
-  });
-
-  /* ---------- inline mini widget formu ---------- */
-  var miniForm = document.getElementById('miniForm');
-  if (miniForm) {
-    miniForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var inputs = miniForm.querySelectorAll('input');
-      if (!inputs[0].value.trim() || !inputs[1].value.trim()) { inputs[0].focus(); return; }
-      miniForm.innerHTML = '<p style="margin:0;color:var(--amber);font-weight:600">Teşekkürler! En kısa sürede size dönüş yapacağız.</p>';
-    });
-  }
+  /* ---------- formlar ----------
+     Gönderim assets/js/form.js içinde: gerçek POST -> gonder.php.
+     Buradaki eski handler'lar KALDIRILDI — hiçbir şey gönderilmeden
+     "Talebiniz alındı" göstermek yanıltıcı beyandı. */
 
   /* ---------- yumuşak kaydırma (header ofset) ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
