@@ -33,7 +33,7 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Gelişim Defteri — ilk günden bugüne çalışmaların</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Deneme sınavı sonuçları ve yol haritası</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Ders programı, telafi ve kaynak kütüphanesi</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Veli paneli — devamsızlık, ödeme ve mesajlaşma</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Eğitmenine mesajla soru sor, ödemeni takip et</li>
       </ul>
     </div>
 
@@ -60,15 +60,11 @@
         <button type="submit" class="btn btn--primary auth__submit">Giriş Yap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg></button>
       </form>
 
-      <div class="auth__or">veya demo rolüyle gir</div>
-      <div class="auth__demos">
+      <div class="auth__or">veya tek tıkla gez</div>
+      <div class="auth__demos" style="grid-template-columns:1fr">
         <button type="button" data-role="ogrenci">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <b>Öğrenci</b><small>Elif Demir · GSF Hazırlık</small>
-        </button>
-        <button type="button" data-role="veli">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <b>Veli</b><small>Ayşe Demir</small>
+          <b>Demo Öğrenci Girişi</b><small>Elif Demir · GSF Hazırlık</small>
         </button>
       </div>
 
@@ -85,7 +81,7 @@
     }
     document.getElementById('loginForm').addEventListener('submit', function(e){
       e.preventDefault();
-      enter('ogrenci'); // demo: e-posta formu öğrenci olarak girer
+      enter('ogrenci');
     });
     document.querySelectorAll('.auth__demos button').forEach(function(b){
       b.addEventListener('click', function(){ enter(b.getAttribute('data-role')); });

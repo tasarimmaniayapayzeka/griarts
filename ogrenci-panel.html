@@ -36,7 +36,7 @@
       </ul>
     </div>
 
-    <div class="psidebar__group only-ogrenci">
+    <div class="psidebar__group">
       <div class="psidebar__label">Sınav Hazırlık</div>
       <ul class="pnav">
         <li><a href="#sinav" data-view="sinav" data-role="ogrenci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Hedef & Deneme</a></li>
@@ -45,11 +45,11 @@
       </ul>
     </div>
 
-    <div class="psidebar__group only-veli">
-      <div class="psidebar__label">Veli İşlemleri</div>
+    <div class="psidebar__group">
+      <div class="psidebar__label">Hesabım</div>
       <ul class="pnav">
-        <li><a href="#odeme" data-view="odeme" data-role="veli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Ödeme & Aidat</a></li>
-        <li><a href="#mesaj" data-view="mesaj" data-role="veli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Eğitmenle Mesaj <span class="pnav__badge">1</span></a></li>
+        <li><a href="#mesaj" data-view="mesaj" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Eğitmenle Mesaj <span class="pnav__badge">1</span></a></li>
+        <li><a href="#odeme" data-view="odeme" data-role="both"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Ödemelerim</a></li>
       </ul>
     </div>
 
@@ -84,8 +84,7 @@
         <div class="pgrid pgrid--4" style="margin-bottom:18px">
           <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div class="stat__num">14<small>/48</small></div><div class="stat__lbl">Tamamlanan ders</div><div class="stat__trend up">%29 ilerleme</div></div>
           <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><div class="stat__num">18</div><div class="stat__lbl">Yüklenen çalışma</div><div class="stat__trend up">+3 bu hafta</div></div>
-          <div class="stat only-ogrenci"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div class="stat__num">82<small>/100</small></div><div class="stat__lbl">Son deneme puanı</div><div class="stat__trend up">+6 puan</div></div>
-          <div class="stat only-veli"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><div class="stat__num">1</div><div class="stat__lbl">Bekleyen ödeme</div><div class="stat__trend warn">Kasım taksiti</div></div>
+          <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><div class="stat__num">82<small>/100</small></div><div class="stat__lbl">Son deneme puanı</div><div class="stat__trend up">+6 puan</div></div>
           <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></span><div class="stat__num">2</div><div class="stat__lbl">Devamsızlık (48'de)</div><div class="stat__trend up">Sınır içinde</div></div>
         </div>
 
@@ -100,19 +99,13 @@
             </div>
           </div>
 
-          <div class="pcard only-ogrenci">
+          <div class="pcard">
             <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><h3>Hedefine ilerleme</h3></div>
             <p class="section-note" style="margin:-6px 0 14px">Hedef: <b style="color:var(--chalk)">MSGSÜ Resim Bölümü</b></p>
             <div class="progress"><div class="progress__bar"><div class="progress__fill" style="width:66%"></div></div><div class="progress__meta"><span>Şu anki seviye: İleri Başlangıç</span><span>%66</span></div></div>
             <a href="#sinav" data-jump="sinav" class="btn btn--dark" style="padding:11px 20px;font-size:.86rem;margin-top:16px">Yol Haritasını Aç</a>
           </div>
 
-          <div class="pcard only-veli">
-            <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><h3>Çocuğunuzun durumu</h3></div>
-            <p style="color:var(--chalk);margin:0 0 6px"><b>Elif Demir</b> — GSF Hazırlık</p>
-            <p class="section-note" style="margin:0 0 14px">Bu ay 6 dersin 6'sına katıldı. Son eğitmen notu: <i>"Ton geçişlerinde belirgin ilerleme var."</i></p>
-            <a href="#mesaj" data-jump="mesaj" class="btn btn--dark" style="padding:11px 20px;font-size:.86rem">Eğitmene Yaz</a>
-          </div>
         </div>
 
         <div class="pcard" style="margin-top:18px">
@@ -308,7 +301,7 @@
         </div>
       </section>
 
-      <!-- ========== ÖDEME & AİDAT (veli) ========== -->
+      <!-- ========== ÖDEMELERİM ========== -->
       <section class="pview" data-view="odeme">
         <div class="pgrid pgrid--3" style="margin-bottom:18px">
           <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></span><div class="stat__num">4</div><div class="stat__lbl">Ödenen taksit</div></div>
@@ -316,7 +309,7 @@
           <div class="stat"><span class="stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><div class="stat__num">5</div><div class="stat__lbl">Kalan taksit</div></div>
         </div>
         <div class="pcard">
-          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><h3>Ödeme planı — Elif Demir</h3></div>
+          <div class="pcard__head"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><h3>Ödeme planım</h3></div>
           <div style="overflow-x:auto">
             <table class="ptable">
               <thead><tr><th>Dönem</th><th>Vade</th><th>Tutar</th><th>Durum</th></tr></thead>
@@ -333,14 +326,14 @@
         </div>
       </section>
 
-      <!-- ========== MESAJLAŞMA (veli) ========== -->
+      <!-- ========== MESAJLAŞMA ========== -->
       <section class="pview" data-view="mesaj">
         <div class="pcard">
-          <div class="pcard__head"><span class="avatar" style="width:40px;height:40px">SH</span><div><h3 style="font-size:1.05rem">Selin Hoca</h3><p class="section-note" style="margin:2px 0 0">Elif'in eğitmeni · genellikle aynı gün yanıtlar</p></div></div>
+          <div class="pcard__head"><span class="avatar" style="width:40px;height:40px">SH</span><div><h3 style="font-size:1.05rem">Selin Hoca</h3><p class="section-note" style="margin:2px 0 0">Eğitmenin · genellikle aynı gün yanıtlar</p></div></div>
           <div class="chat" id="chat">
-            <div class="bubble them">Merhaba Ayşe Hanım, Elif bu hafta ton çalışmasında gerçekten güzel ilerledi. 👏<small>Pazartesi 19:12</small></div>
-            <div class="bubble me">Çok teşekkürler, evde de bahsediyor. Deneme sınavı sonucu ne zaman belli olur?<small>Pazartesi 20:03</small></div>
-            <div class="bubble them">Cuma günü sisteme yüklenecek, "Genel Bakış" ekranından da görebileceksiniz. Bu ay hedefe çok yaklaştı.<small>Pazartesi 20:20</small></div>
+            <div class="bubble them">Merhaba Elif, bugünkü büst etüdünde ton geçişlerin gerçekten güzeldi. 👏<small>Pazartesi 19:12</small></div>
+            <div class="bubble me">Teşekkürler hocam! Saç kütlesinde detaya girince kayboluyorum, evde hangi egzersizi yapayım?<small>Pazartesi 20:03</small></div>
+            <div class="bubble them">Detayı bırak, önce büyük ışık-gölge kütlesini kur: küre etüdünü 3 kez tekrar et. Çarşamba kağıdını birlikte inceleriz.<small>Pazartesi 20:20</small></div>
           </div>
           <form class="chatbar" id="chatbar">
             <input type="text" placeholder="Bir mesaj yaz…" aria-label="Mesaj">
@@ -382,6 +375,6 @@
   <img id="lbImg" src="" alt="Büyütülmüş çalışma">
 </div>
 
-<script src="assets/js/portal.js?v=614441ed"></script>
+<script src="assets/js/portal.js?v=2477ecb5"></script>
 </body>
 </html>
