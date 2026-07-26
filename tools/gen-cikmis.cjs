@@ -102,7 +102,7 @@ ${o.schema || ''}
 <header class="header" id="header"><div class="container nav">
   <a class="brand" href="index.html" aria-label="Gri Akademi ana sayfa"><img class="brand__badge" src="assets/img/logo-badge.png" alt="Gri Akademi logosu"><span class="brand__text"><span class="brand__name">Gri Akademi</span><span class="brand__sub">Sanat Kursu</span></span></a>
   <nav aria-label="Ana menü"><ul class="nav__menu">
-    <li><a href="index.html#hakkimizda">Hakkımızda</a></li>
+    <li><a href="index.html#hakkimizda">Kurumsal <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="index.html#hakkimizda">Hakkımızda</a><a href="vizyonumuz.html">Vizyonumuz</a></div></li>
     <li><a href="index.html#hizmetler">Sanat Kursları <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="gsf-hazirlik.html">GSF Hazırlık</a><a href="gsl-hazirlik.html">GSL Hazırlık</a><a href="hobi-resim.html">Hobi Resim</a></div></li>
     <li><a href="workshoplar.html">Workshoplar <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="hobi-seramik.html">Hobi Seramik</a><a href="seramik-heykel.html">Seramik & Heykel</a><a href="mozaik.html">Mozaik</a><a href="vitray.html">Vitray</a></div></li>
     <li><a href="yurt-disi-portfolyo.html">Portfolyo <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a><div class="dropdown"><a href="yurt-ici-portfolyo.html">Yurt İçi Portfolyo</a><a href="yurt-disi-portfolyo.html">Yurt Dışı Portfolyo</a></div></li>
@@ -115,7 +115,7 @@ ${o.schema || ''}
 <aside class="mobile-nav" id="mobileNav" aria-label="Mobil menü">
   <div class="mobile-nav__head"><span class="brand__name">Gri Akademi</span><button class="nav__toggle" id="navClose" aria-label="Menüyü kapat" style="display:inline-flex"><span></span></button></div>
   <ul>
-    <li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="gsf-hazirlik.html">GSF Hazırlık</a></li><li><a href="gsl-hazirlik.html">GSL Hazırlık</a></li><li><a href="workshoplar.html">Workshoplar</a></li><li><a href="yurt-disi-portfolyo.html">Portfolyo</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="index.html#iletisim">İletişim</a></li>
+    <li><a href="index.html#hakkimizda">Hakkımızda</a></li><li><a href="vizyonumuz.html">Vizyonumuz</a></li><li><a href="gsf-hazirlik.html">GSF Hazırlık</a></li><li><a href="gsl-hazirlik.html">GSL Hazırlık</a></li><li><a href="workshoplar.html">Workshoplar</a></li><li><a href="yurt-disi-portfolyo.html">Portfolyo</a></li><li><a href="cikmis-sorular.html">Çıkmış Sorular</a></li><li><a href="yetenek-testi.html">Yetenek Testi</a></li><li><a href="index.html#iletisim">İletişim</a></li>
   </ul>
   <a href="yetenek-testi.html" class="btn btn--primary">Yetenek Testi'ni Çöz</a>
   <div class="mobile-nav__contact">Hemen ara: <a href="tel:+905425983374">0542 598 33 74</a></div>
