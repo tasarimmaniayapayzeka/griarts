@@ -10,7 +10,7 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
-$ALICI        = 'info@griarts.com';
+$ALICI        = 'info@griarts.com.tr';
 $GONDEREN     = 'site@griarts.com.tr';   // bu posta kutusu cPanel'de OLUŞTURULMALI (SPF)
 $KAYIT_DIR    = __DIR__ . '/_talepler';
 $MIN_SANIYE   = 3;                        // form açılışı ile gönderim arası
