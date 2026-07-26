@@ -94,6 +94,30 @@ for (const dosya of sayfalar) {
   }
 }
 
+/* 4b) VARLIK SÜRÜMLEME (cache-busting)
+      .htaccess CSS/JS'i 7 gün önbellekler; dosya adı değişmeyince ziyaretçi
+      bayat stil görür (vizyonumuz kartlarının stilsiz/dev görünmesi bundandı).
+      Çözüm: her css/js referansına içerik hash'i ekle -> dosya değişince
+      URL değişir, önbellek anında düşer. Idempotent (eski ?v= silinip yenisi basılır). */
+const crypto = require('crypto');
+const surum = {};
+for (const rel of ['assets/css/style.css', 'assets/css/portal.css', 'assets/js/main.js', 'assets/js/form.js', 'assets/js/portal.js', 'assets/js/yetenek-testi.js']) {
+  const f = path.join(ROOT, rel);
+  if (fs.existsSync(f)) surum[rel] = crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
+}
+let vDegisen = 0;
+for (const dosya of sayfalar) {
+  const fp = path.join(ROOT, dosya);
+  let h = fs.readFileSync(fp, 'utf8');
+  const once = h;
+  for (const [rel, hash] of Object.entries(surum)) {
+    const re = new RegExp(rel.replace(/[./]/g, m => '\\' + m) + '(\\?v=[a-f0-9]+)?', 'g');
+    h = h.replace(re, rel + '?v=' + hash);
+  }
+  if (h !== once) { fs.writeFileSync(fp, h, 'utf8'); vDegisen++; }
+}
+console.log(`sürümleme: ${Object.keys(surum).length} varlık, ${vDegisen} sayfa güncellendi (style.css v=${surum['assets/css/style.css']})`);
+
 /* 5) sitemap.xml */
 const bugun = '2026-07-26';
 const oncelik = (f) => f === 'index.html' ? '1.0'
