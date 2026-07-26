@@ -11,7 +11,7 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
 $ALICI        = 'info@griarts.com';
-$GONDEREN     = 'site@griarts.com';      // alan adına ait olmalı (SPF)
+$GONDEREN     = 'site@griarts.com.tr';   // bu posta kutusu cPanel'de OLUŞTURULMALI (SPF)
 $KAYIT_DIR    = __DIR__ . '/_talepler';
 $MIN_SANIYE   = 3;                        // form açılışı ile gönderim arası
 $LIMIT_ADET   = 5;                        // aynı IP / pencere
@@ -95,7 +95,7 @@ if (is_dir($KAYIT_DIR)) {
 
 /* ---------- e-posta ---------- */
 $satirlar = [
-    "Yeni talep — griarts.com",
+    "Yeni talep — griarts.com.tr",
     str_repeat('-', 40),
     "Tarih   : $zaman",
     "Ad      : $ad",

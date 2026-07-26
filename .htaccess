@@ -1,0 +1,91 @@
+# =========================================================
+# Gri Akademi — sunucu yapılandırması (Apache / cPanel)
+# =========================================================
+
+AddDefaultCharset UTF-8
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# ---------------------------------------------------------
+# 1) ESKİ SİTE YÖNLENDİRMELERİ — BURADA GEREKMİYOR
+#    Eski site (site.pro yapısı: /Hakkımızda/, /Workshop/,
+#    /Çıkmış-sorular/, /Örnek-çizimler/, /İletişim/) BAŞKA bir
+#    alan adında ve BAŞKA bir sunucuda canlı: griarts.com
+#    (185.216.113.37). Bu dosya griarts.com.tr içindir; o adresler
+#    burada hiç var olmadı, yönlendirilecek bir şey yok.
+#
+#    SIRADAKİ İŞ (eski hostta yapılacak): griarts.com tamamen
+#    devre dışı bırakılacaksa, eski sunucudaki .htaccess'e
+#    sayfa-sayfa 301'ler konmalı ki 18 yıllık SEO buraya aksın.
+#    O yönlendirme haritası hazır — istendiğinde verilir.
+# ---------------------------------------------------------
+
+# ---------------------------------------------------------
+# 2) TEK KANONİK ADRES: https://www.griarts.com.tr
+#    (canonical etiketleriyle birebir aynı olmalı)
+# ---------------------------------------------------------
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^ https://www.%1%{REQUEST_URI} [R=301,L,NE]
+
+# index.html'i köke indirge (çift içerik olmasın)
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------
+# 3) TALEP KAYITLARI DIŞARIYA KAPALI
+# ---------------------------------------------------------
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(csv|log)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(csv|log)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+RedirectMatch 404 ^/_talepler(/.*)?$
+
+# ---------------------------------------------------------
+# 4) SIKIŞTIRMA
+# ---------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------
+# 5) TARAYICI ÖNBELLEĞİ
+#    HTML kısa (içerik güncellemesi hemen görünsün),
+#    varlıklar uzun (hız).
+# ---------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 1 hours"
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+</IfModule>
+
+# ---------------------------------------------------------
+# 6) GÜVENLİK BAŞLIKLARI
+# ---------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ---------------------------------------------------------
+# 7) HATA SAYFASI
+# ---------------------------------------------------------
+ErrorDocument 404 /index.html

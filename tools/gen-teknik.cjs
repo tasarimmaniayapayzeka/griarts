@@ -12,7 +12,11 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DOMAIN = 'https://www.griarts.com';   // cPanel'e taşındığında tek yer burası
+// Sitenin yayınlandığı tek kanonik adres. Değişirse SADECE burayı değiştir.
+// NOT: griarts.com ESKİ site (başka sunucuda, hâlâ canlı). Yeni site .com.tr'de.
+const DOMAIN = 'https://www.griarts.com.tr';
+// URL'lerde geçen eski alan adını düzelt (e-postalara DOKUNMA: info@griarts.com)
+const ESKI_URL = /(https?:\/\/)(www\.)?griarts\.com(?!\.tr)/g;
 
 const HARIC = new Set(['ogrenci-panel.html', 'ogrenci-giris.html']); // noindex, portal
 const rapor = [];
@@ -25,6 +29,13 @@ for (const dosya of sayfalar) {
   const once = h;
   const url = DOMAIN + '/' + (dosya === 'index.html' ? '' : dosya);
   const degisiklikler = [];
+
+  /* 0) URL'lerdeki eski alan adı -> yeni (JSON-LD, sameAs, og dahil).
+        mailto: / info@griarts.com etkilenmez, çünkü http ile başlamıyor. */
+  if (ESKI_URL.test(h)) {
+    h = h.replace(ESKI_URL, DOMAIN.replace(/^https?:\/\//, 'https://'));
+    degisiklikler.push('alan-adı');
+  }
 
   /* 1) canonical — mutlak ve tek kaynaktan */
   if (/<link rel="canonical"/.test(h)) {

@@ -4,4 +4,4 @@ Disallow: /ogrenci-panel.html
 Disallow: /ogrenci-giris.html
 Disallow: /_talepler/
 
-Sitemap: https://www.griarts.com/sitemap.xml
+Sitemap: https://www.griarts.com.tr/sitemap.xml
