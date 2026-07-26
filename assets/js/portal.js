@@ -30,7 +30,6 @@
     kaynak:  { t: 'Kaynak Kütüphanesi', s: 'Föyler, notlar ve video ders tekrarları' },
     belge:   { t: 'Belgelerim', s: 'Öğrenci belgesi, sözleşme ve sertifika' },
     mesaj:   { t: 'Eğitmenle Mesajlaşma', s: 'Selin Hoca ile birebir iletişim' },
-    odeme:   { t: 'Ödemelerim', s: 'Taksit planı — bilgilendirme amaçlı' },
     profil:  { t: 'Profilim', s: 'Hesap ve program bilgilerin' }
   };
 
