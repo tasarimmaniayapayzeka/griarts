@@ -37,8 +37,21 @@ RewriteRule ^ / [R=301,L]
 </IfModule>
 
 # ---------------------------------------------------------
-# 3) TALEP KAYITLARI DIŞARIYA KAPALI
+# 3) TALEP KAYITLARI VE GELİŞTİRME DOSYALARI DIŞARIYA KAPALI
+#    (site cPanel Git ile kurulursa .git klasörü de public_html
+#     içinde olur — kaynak kodun okunmasını engelliyoruz)
 # ---------------------------------------------------------
+RedirectMatch 404 ^/\.git(/.*)?$
+RedirectMatch 404 ^/(tools|PLAN|data)/.*\.(cjs|js|json)$
+<FilesMatch "^\.(git|gitignore|gitattributes|env)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
 <IfModule mod_authz_core.c>
   <FilesMatch "\.(csv|log)$">
     Require all denied
