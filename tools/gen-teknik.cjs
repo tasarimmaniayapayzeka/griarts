@@ -101,7 +101,7 @@ for (const dosya of sayfalar) {
       URL değişir, önbellek anında düşer. Idempotent (eski ?v= silinip yenisi basılır). */
 const crypto = require('crypto');
 const surum = {};
-for (const rel of ['assets/css/style.css', 'assets/css/portal.css', 'assets/js/main.js', 'assets/js/form.js', 'assets/js/portal.js', 'assets/js/yetenek-testi.js']) {
+for (const rel of ['assets/css/style.css', 'assets/css/portal.css', 'assets/js/main.js', 'assets/js/form.js', 'assets/js/chat.js', 'assets/js/portal.js', 'assets/js/yetenek-testi.js']) {
   const f = path.join(ROOT, rel);
   if (fs.existsSync(f)) surum[rel] = crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
 }

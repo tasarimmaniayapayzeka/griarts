@@ -1039,3 +1039,75 @@ h1 em, h2 em, .page-hero h1 em{
 }
 /* güvenlik ağı: yatay kaydırma ölçümünü kökten kilitle */
 html{ overflow-x:clip; }
+
+/* =========================================================
+   GRİ ASİSTAN — sohbet balonu ve paneli
+   ========================================================= */
+.gchat__launch{
+  position:fixed; right:22px; bottom:96px; z-index:1150;
+  width:58px; height:58px; border-radius:50%; border:none; cursor:pointer;
+  background:linear-gradient(135deg,var(--amber),var(--amber-deep)); color:var(--on-amber);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 28px rgba(224,162,78,.4); transition:transform .2s var(--ease);
+}
+.gchat__launch:hover{ transform:scale(1.07); }
+.gchat__launch svg{ width:26px; height:26px; }
+.gchat__pulse{
+  position:absolute; top:6px; right:6px; width:11px; height:11px; border-radius:50%;
+  background:#7fc99a; border:2px solid var(--night);
+}
+.gchat__panel{
+  position:fixed; right:22px; bottom:166px; z-index:1151;
+  width:min(370px, calc(100vw - 28px)); max-height:min(600px, calc(100vh - 190px));
+  display:flex; flex-direction:column;
+  background:var(--night-2); border:1px solid var(--line-2); border-radius:18px;
+  box-shadow:0 30px 70px rgba(0,0,0,.55); overflow:hidden;
+  animation:gchatIn .25s var(--ease);
+}
+@keyframes gchatIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+.gchat__head{
+  display:flex; align-items:center; gap:11px; padding:13px 16px;
+  background:#101214; border-bottom:1px solid var(--line);
+}
+.gchat__head img{ width:34px; height:34px; border-radius:50%; }
+.gchat__head b{ color:var(--chalk); font-family:var(--serif); font-size:1.02rem; display:block; line-height:1.1; }
+.gchat__head small{ color:#7fc99a; font-size:.72rem; }
+.gchat__close{
+  margin-left:auto; background:none; border:none; color:var(--chalk-2); font-size:1rem; cursor:pointer; padding:6px;
+}
+.gchat__close:hover{ color:var(--chalk); }
+.gchat__msgs{ flex:1; overflow-y:auto; padding:16px 14px; display:flex; flex-direction:column; gap:10px; min-height:220px; }
+.gchat__msg{ max-width:85%; padding:10px 14px; border-radius:14px; font-size:.9rem; line-height:1.55; color:var(--chalk); }
+.gchat__msg--bot{ align-self:flex-start; background:var(--night-3); border-bottom-left-radius:4px; }
+.gchat__msg--me{ align-self:flex-end; background:var(--amber-wash); border:1px solid rgba(224,162,78,.3); border-bottom-right-radius:4px; }
+.gchat__msg a{ color:var(--amber); text-decoration:underline; text-underline-offset:2px; word-break:break-all; }
+.gchat__dots{ display:inline-flex; gap:5px; padding:2px 0; }
+.gchat__dots i{ width:7px; height:7px; border-radius:50%; background:var(--chalk-2); animation:gdot 1.1s infinite; }
+.gchat__dots i:nth-child(2){ animation-delay:.18s; } .gchat__dots i:nth-child(3){ animation-delay:.36s; }
+@keyframes gdot{ 0%,60%,100%{ opacity:.3; transform:translateY(0); } 30%{ opacity:1; transform:translateY(-4px); } }
+.gchat__chips{ display:flex; flex-wrap:wrap; gap:8px; padding:0 14px 12px; }
+.gchat__chips button{
+  background:var(--night); border:1px solid var(--line-2); color:var(--chalk-2);
+  border-radius:100px; padding:7px 13px; font-size:.8rem; font-family:var(--sans); cursor:pointer; transition:all .18s;
+}
+.gchat__chips button:hover{ border-color:var(--amber); color:var(--amber); }
+.gchat__bar{ display:flex; gap:9px; padding:11px 12px; border-top:1px solid var(--line); }
+.gchat__bar input{
+  flex:1; padding:11px 14px; border-radius:100px; background:var(--night);
+  border:1px solid var(--line-2); color:var(--chalk); font-family:var(--sans); font-size:.9rem;
+}
+.gchat__bar input:focus{ outline:none; border-color:var(--amber); }
+.gchat__bar button{
+  width:42px; height:42px; border-radius:50%; border:none; cursor:pointer; flex:none;
+  background:var(--amber); color:var(--on-amber); display:flex; align-items:center; justify-content:center;
+}
+.gchat__bar button svg{ width:18px; height:18px; }
+.gchat__foot{
+  display:flex; align-items:center; gap:6px; justify-content:center;
+  padding:8px; font-size:.72rem; color:var(--muted); background:#101214; border-top:1px solid var(--line);
+}
+.gchat__foot a{ color:#25D366; font-weight:600; }
+@media (max-width:520px){
+  .gchat__launch{ bottom:150px; right:16px; width:52px; height:52px; }
+  .gchat__panel{ right:14px; bottom:212px; }
+}
