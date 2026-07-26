@@ -1008,3 +1008,34 @@ h1 em, h2 em, .page-hero h1 em{
   .vcard{ grid-template-columns:1fr; }
   .vcard__media{ order:-1 !important; min-height:0; aspect-ratio:2/1; }
 }
+
+/* =========================================================
+   NEDEN BİZ — rakam bandı
+   ========================================================= */
+.nbstats{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:940px; margin:0 auto; }
+.nbstat{
+  background:var(--night-2); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:20px 18px; text-align:center;
+}
+.nbstat b{ display:block; font-family:var(--serif); font-weight:600; font-size:clamp(1.7rem,3vw,2.3rem); color:var(--amber); line-height:1; }
+.nbstat span{ display:block; margin-top:8px; color:var(--chalk-2); font-size:.82rem; line-height:1.5; }
+@media (max-width:860px){ .nbstats{ grid-template-columns:1fr 1fr; } }
+@media (max-width:420px){ .nbstats{ grid-template-columns:1fr; } }
+
+/* =========================================================
+   MOBİL TAŞMA DÜZELTMELERİ (375px denetimi bulguları)
+   ========================================================= */
+/* kayan şerit asla yatay kaydırma üretmesin */
+.hero__marquee{ overflow:hidden; }
+/* grid hücreleri min-content yüzünden viewport'u aşmasın */
+.contact__grid > *, .exam-layout > *, .blog-layout > *{ min-width:0; }
+.contact__info h2, .contact__info p, .contact__row span,
+.exam-block, .exam-block h2, .q-item, .q-item p{ overflow-wrap:break-word; }
+/* tablo ışığı mobilde viewport dışına taşmasın (dekoratif glow) */
+@media (max-width:700px){
+  .hero__media::before, .about__media::before, .exams__visual::before, .page-hero__media::before{
+    inset:-6% -4% -10% -4%;
+  }
+}
+/* güvenlik ağı: yatay kaydırma ölçümünü kökten kilitle */
+html{ overflow-x:clip; }
