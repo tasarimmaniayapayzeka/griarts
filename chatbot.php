@@ -21,7 +21,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') yanit(['ok' => false, 'hata' 
 /* ---------- anahtar (webroot dışından) ---------- */
 $cfg = @include dirname(__DIR__) . '/gri-gizli.php';
 $KEY = is_array($cfg) ? (string)($cfg['openai_key'] ?? '') : '';
-if ($KEY === '' || str_contains($KEY, 'BURAYA')) yanit(['ok' => false, 'offline' => true]);
+if ($KEY === '' || strpos($KEY, 'BURAYA') !== false) yanit(['ok' => false, 'offline' => true]); // strpos: sunucu PHP 7.4, str_contains yok
 
 /* ---------- hız sınırı: IP başına 10 dk'da 25 mesaj ---------- */
 $ip  = (string)($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');
