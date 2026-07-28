@@ -1096,7 +1096,9 @@ html{ overflow-x:clip; }
 }
 .gchat__menu a span{ font-size:.95rem; }
 .gchat__menu a:hover{ border-color:var(--amber); color:var(--amber); }
-.gchat__msgs{ flex:1; overflow-y:auto; padding:16px 14px; display:flex; flex-direction:column; gap:10px; min-height:220px; }
+/* msgs dışındaki tüm bölümler sabit: panel dolunca flex onları ezmesin */
+.gchat__head,.gchat__actions,.gchat__chips,.gchat__menu,.gchat__bar,.gchat__foot{ flex:none; }
+.gchat__msgs{ flex:1; overflow-y:auto; padding:16px 14px; display:flex; flex-direction:column; gap:10px; min-height:120px; }
 .gchat__msg{ max-width:85%; padding:10px 14px; border-radius:14px; font-size:.9rem; line-height:1.55; color:var(--chalk); }
 .gchat__msg--bot{ align-self:flex-start; background:var(--night-3); border-bottom-left-radius:4px; }
 .gchat__msg--me{ align-self:flex-end; background:var(--amber-wash); border:1px solid rgba(224,162,78,.3); border-bottom-right-radius:4px; }
