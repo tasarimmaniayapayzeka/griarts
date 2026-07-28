@@ -1061,6 +1061,8 @@ html{ overflow-x:clip; }
   animation:gchatIn .25s var(--ease);
 }
 @media (max-width:720px){ .gchat__panel{ bottom:142px; max-height:calc(100vh - 166px); } }
+/* [hidden] dersi (.bnote ile aynı): author display:flex özniteliği ezer — kapalı hali açıkça tanımla */
+.gchat__panel[hidden]{ display:none; }
 @keyframes gchatIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
 .gchat__head{
   display:flex; align-items:center; gap:11px; padding:13px 16px;
