@@ -48,11 +48,24 @@
   /* ---------- yardımcılar ---------- */
   var IC_SAYFA = /\b([a-z0-9-]+\.html)\b/g;
   function linkle(t) {
-    return t
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+    t = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // markdown [metin](hedef) — önce yer tutucuya al; yoksa .html regex'i href'i ikinci kez sarar
+    var linkler = [];
+    t = t.replace(/\[([^\]]+)\]\(([^()\s]+)\)/g, function (m, metin, hedef) {
+      var dis = /^https?:\/\//.test(hedef);
+      linkler.push('<a href="' + hedef + '"' + (dis ? ' target="_blank" rel="noopener"' : '') + '>' + metin + '</a>');
+      return '\u0001' + (linkler.length - 1) + '\u0002';
+    });
+    t = t
+      .replace(/(https?:\/\/[^\s<]+)/g, function (m, url) {
+        // tam URL de yer tutucuya girer; yoksa icindeki .html'i alttaki regex tekrar sarar
+        linkler.push('<a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>');
+        return '\u0001' + (linkler.length - 1) + '\u0002';
+      })
       .replace(IC_SAYFA, '<a href="$1">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
       .replace(/\n/g, '<br>');
+    return t.replace(/\u0001(\d+)\u0002/g, function (m, i) { return linkler[+i]; });
   }
   function balon(rol, html) {
     var d = document.createElement('div');
