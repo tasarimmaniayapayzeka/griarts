@@ -74,12 +74,12 @@ RedirectMatch 404 ^/_talepler(/.*)?$
 
 # ---------------------------------------------------------
 # 5) TARAYICI ÖNBELLEĞİ
-#    HTML kısa (içerik güncellemesi hemen görünsün),
-#    varlıklar uzun (hız).
+#    HTML no-cache: her açılışta sunucuyla doğrulanır (değişmediyse 304 döner,
+#    maliyeti yok) — deploy anında HERKESE yansır; eski HTML + yeni varlık
+#    karışımı yaşanmaz. Varlıklar uzun süreli (URL'de içerik hash'i var).
 # ---------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/html                 "access plus 1 hours"
   ExpiresByType text/css                  "access plus 7 days"
   ExpiresByType application/javascript    "access plus 7 days"
   ExpiresByType image/jpeg                "access plus 1 year"
@@ -96,6 +96,9 @@ RedirectMatch 404 ^/_talepler(/.*)?$
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
 </IfModule>
 
 # ---------------------------------------------------------
