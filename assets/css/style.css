@@ -472,21 +472,16 @@ body.menu-open .scrim{ opacity:1; visibility:visible; }
 @media (max-width:860px){ .footer__grid{ grid-template-columns:1fr 1fr; gap:34px; } }
 @media (max-width:480px){ .footer__grid{ grid-template-columns:1fr; } }
 
-/* =========================================================
-   WHATSAPP float
-   ========================================================= */
-.wa-float{ position:fixed; right:22px; bottom:22px; z-index:300; width:58px; height:58px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(37,211,102,.4); transition:transform .25s; }
-.wa-float:hover{ transform:scale(1.08); }
-.wa-float svg{ width:30px; height:30px; color:#fff; }
-.wa-float::after{ content:""; position:absolute; inset:0; border-radius:50%; border:2px solid #25D366; animation:waPulse 2.2s ease-out infinite; }
-@keyframes waPulse{ 0%{ transform:scale(1); opacity:.7 } 100%{ transform:scale(1.7); opacity:0 } }
+/* WhatsApp float KALDIRILDI — işlevi Gri Asistan paneline taşındı (.gchat__actions).
+   Eski sürümü önbellekte kalan ziyaretçiler için güvenlik ağı: */
+.wa-float{ display:none !important; }
 
 /* mobil alt çubuk (hizmet sayfalarında) */
 .mobilebar{ display:none; position:fixed; left:0; right:0; bottom:0; z-index:290; background:var(--night-2); border-top:1px solid var(--line-2); padding:8px; grid-template-columns:1fr 1fr 1fr; gap:8px; }
 .mobilebar a{ display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; border-radius:8px; font-size:.72rem; font-weight:600; color:var(--chalk-2); }
 .mobilebar a svg{ width:20px; height:20px; }
 .mobilebar a.is-primary{ background:var(--amber); color:var(--on-amber); }
-@media (max-width:720px){ .mobilebar{ display:grid; } .wa-float{ bottom:78px; } body{ padding-bottom:64px; } }
+@media (max-width:720px){ .mobilebar{ display:grid; } body{ padding-bottom:64px; } }
 
 /* =========================================================
    SCROLL REVEAL (JS varsa gizle; içerik daima güvenli)
@@ -498,7 +493,7 @@ html.js .reveal.is-in{ opacity:1; transform:none; }
 .reveal[data-d="3"]{ transition-delay:.24s } .reveal[data-d="4"]{ transition-delay:.32s }
 @media (prefers-reduced-motion:reduce){
   html.js .reveal{ opacity:1; transform:none; transition:none; }
-  .marquee,.hero__badge-float,.wa-float::after{ animation:none; }
+  .marquee,.hero__badge-float{ animation:none; }
   html{ scroll-behavior:auto; }
 }
 
@@ -1044,12 +1039,13 @@ html{ overflow-x:clip; }
    GRİ ASİSTAN — sohbet balonu ve paneli
    ========================================================= */
 .gchat__launch{
-  position:fixed; right:22px; bottom:96px; z-index:1150;
+  position:fixed; right:22px; bottom:22px; z-index:1150;
   width:58px; height:58px; border-radius:50%; border:none; cursor:pointer;
   background:linear-gradient(135deg,var(--amber),var(--amber-deep)); color:var(--on-amber);
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 10px 28px rgba(224,162,78,.4); transition:transform .2s var(--ease);
 }
+@media (max-width:720px){ .gchat__launch{ bottom:78px; } } /* mobilebar'ın üstünde */
 .gchat__launch:hover{ transform:scale(1.07); }
 .gchat__launch svg{ width:26px; height:26px; }
 .gchat__pulse{
@@ -1057,13 +1053,14 @@ html{ overflow-x:clip; }
   background:#7fc99a; border:2px solid var(--night);
 }
 .gchat__panel{
-  position:fixed; right:22px; bottom:166px; z-index:1151;
-  width:min(370px, calc(100vw - 28px)); max-height:min(600px, calc(100vh - 190px));
+  position:fixed; right:22px; bottom:92px; z-index:1151;
+  width:min(370px, calc(100vw - 28px)); max-height:min(640px, calc(100vh - 116px));
   display:flex; flex-direction:column;
   background:var(--night-2); border:1px solid var(--line-2); border-radius:18px;
   box-shadow:0 30px 70px rgba(0,0,0,.55); overflow:hidden;
   animation:gchatIn .25s var(--ease);
 }
+@media (max-width:720px){ .gchat__panel{ bottom:142px; max-height:calc(100vh - 166px); } }
 @keyframes gchatIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
 .gchat__head{
   display:flex; align-items:center; gap:11px; padding:13px 16px;
@@ -1076,6 +1073,29 @@ html{ overflow-x:clip; }
   margin-left:auto; background:none; border:none; color:var(--chalk-2); font-size:1rem; cursor:pointer; padding:6px;
 }
 .gchat__close:hover{ color:var(--chalk); }
+.gchat__actions{
+  display:grid; grid-template-columns:1fr 1fr; gap:8px;
+  padding:10px 14px; background:#101214; border-bottom:1px solid var(--line);
+}
+.gchat__act{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:9px 10px; border-radius:100px; font-size:.82rem; font-weight:600;
+  border:1px solid var(--line-2); color:var(--chalk); transition:all .18s;
+}
+.gchat__act svg{ width:16px; height:16px; flex:none; }
+.gchat__act--tel:hover{ border-color:var(--amber); color:var(--amber); }
+.gchat__act--wa{ border-color:rgba(37,211,102,.35); color:#25D366; }
+.gchat__act--wa:hover{ background:rgba(37,211,102,.12); }
+.gchat__menu{ padding:0 14px 12px; }
+.gchat__menu small{ display:block; color:var(--muted); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:7px; }
+.gchat__menu nav{ display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.gchat__menu a{
+  display:flex; align-items:center; gap:7px; padding:8px 10px;
+  background:var(--night); border:1px solid var(--line-2); border-radius:10px;
+  font-size:.8rem; font-weight:600; color:var(--chalk-2); transition:all .18s;
+}
+.gchat__menu a span{ font-size:.95rem; }
+.gchat__menu a:hover{ border-color:var(--amber); color:var(--amber); }
 .gchat__msgs{ flex:1; overflow-y:auto; padding:16px 14px; display:flex; flex-direction:column; gap:10px; min-height:220px; }
 .gchat__msg{ max-width:85%; padding:10px 14px; border-radius:14px; font-size:.9rem; line-height:1.55; color:var(--chalk); }
 .gchat__msg--bot{ align-self:flex-start; background:var(--night-3); border-bottom-left-radius:4px; }
@@ -1108,6 +1128,6 @@ html{ overflow-x:clip; }
 }
 .gchat__foot a{ color:#25D366; font-weight:600; }
 @media (max-width:520px){
-  .gchat__launch{ bottom:150px; right:16px; width:52px; height:52px; }
-  .gchat__panel{ right:14px; bottom:212px; }
+  .gchat__launch{ bottom:78px; right:16px; width:52px; height:52px; }
+  .gchat__panel{ right:14px; bottom:136px; max-height:calc(100vh - 160px); }
 }
