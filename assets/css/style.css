@@ -179,13 +179,14 @@ body::after{
 body.menu-open .nav__toggle span{ background:transparent; }
 body.menu-open .nav__toggle span::before{ transform:rotate(45deg); }
 body.menu-open .nav__toggle span::after{ transform:rotate(-45deg) translateY(-1px); }
-/* 1361-1600: menü+logo+butonlar tek satırda sığsın diye sıkılaştır (satır kırma = "kayma" görünümü) */
-@media (max-width:1600px){
-  .nav{ gap:12px; }
-  .nav__menu a{ padding:10px 10px; font-size:.88rem; }
-  .nav__menu > li > a::after{ left:10px; right:10px; }
-  .nav__actions{ gap:9px; }
-  .nav__cta{ padding:11px 16px; }
+/* 1361-1760: menü+logo+butonlar tek satırda rahat sığsın diye sıkılaştır
+   (satır kırma = "kayma" görünümü; 1601-1700 tam boyda da buton kenara dayanıyordu) */
+@media (max-width:1760px){
+  .nav{ gap:10px; }
+  .nav__menu a{ padding:10px 8px; font-size:.88rem; }
+  .nav__menu > li > a::after{ left:8px; right:8px; }
+  .nav__actions{ gap:8px; }
+  .nav__cta{ padding:11px 14px; }
   .brand__name{ font-size:1.2rem; }
 }
 /* masaüstü menü 1360 altında sığmıyor → hamburgere geç (eski eşik 1080'de 1081-1360 arası kırılıyordu) */
