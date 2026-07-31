@@ -1205,7 +1205,7 @@ html{ overflow-x:clip; }
 .gcar__foot{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:20px; }
 .gcar__count{ font-family:var(--serif); color:var(--chalk-2); font-size:.95rem; min-width:56px; text-align:center; }
 .gcar__count b{ color:var(--amber); }
-.gcar__dots{ display:flex; gap:7px; }
+.gcar__dots{ display:flex; flex-wrap:wrap; justify-content:center; gap:7px; max-width:min(420px, 74vw); }
 .gcar__dots button{ width:7px; height:7px; border-radius:50%; border:none; background:var(--line-2); cursor:pointer; transition:all .25s; padding:0; }
 .gcar__dots button.on{ background:var(--amber); transform:scale(1.35); }
 @media (max-width:640px){
