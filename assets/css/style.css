@@ -128,7 +128,11 @@ body::after{
 .topbar__social a{ white-space:nowrap; }
 @media (max-width:1024px){ .topbar__item--addr{ display:none; } }
 @media (max-width:760px){ .topbar__item--meb{ display:none; } }
-@media (max-width:600px){ .topbar__social a[target="_blank"], .topbar__social span{ display:none; } }
+@media (max-width:600px){
+  .topbar__social{ display:none; }              /* içi zaten boşalıyor */
+  .topbar__inner{ justify-content:center; }     /* tek kalan telefon ORTADA */
+  .topbar__left{ justify-content:center; }
+}
 @media (max-width:520px){
   .topbar__inner{ height:auto; min-height:40px; padding:7px 0; gap:10px; }
   .topbar__social{ gap:10px; }
