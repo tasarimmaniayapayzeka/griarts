@@ -213,7 +213,13 @@ body.menu-open .mobilebar, body.menu-open #gchat{ display:none; }
 .mobile-nav a:hover{ color:var(--amber); }
 .mobile-nav .sub{ padding-left:14px; }
 .mobile-nav .sub a{ font-family:var(--sans); font-size:.98rem; color:var(--chalk-2); padding:10px 4px; }
-.mobile-nav .btn{ margin-top:22px; }
+/* .mobile-nav a{display:block} kuralı .btn'yi de ezer — buton stillerini geri ver */
+.mobile-nav .btn{
+  margin-top:22px; display:flex; align-items:center; justify-content:center;
+  padding:15px 30px; font-family:var(--sans); font-size:.95rem; text-align:center;
+}
+.mobile-nav .btn--primary{ color:var(--on-amber); }
+.mobile-nav .btn--primary:hover{ color:var(--on-amber); }
 .mobile-nav__contact{ margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
 .mobile-nav__contact a{ color:var(--amber); font-weight:600; }
 .scrim{ position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
