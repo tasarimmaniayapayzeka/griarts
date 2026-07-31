@@ -155,16 +155,25 @@
         }
       })
       .catch(function () { yaziyor(false); cevrimdisi(); })
-      .finally(function () { mesgul = false; input.focus(); });
+      .finally(function () { mesgul = false; odakla(); });
   }
 
   /* ---------- olaylar ---------- */
+  var MASAUSTU = window.matchMedia('(min-width: 721px)');
+  function odakla() {
+    // telefonda otomatik odak YOK: klavye acilip sayfayi ziplatiyor
+    if (MASAUSTU.matches) { try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); } }
+  }
+  function panelDurum(acikMi) {
+    panel.hidden = !acikMi;
+    document.body.classList.toggle('chat-open', acikMi); // mobilde arka plan kaydirmasi kilitlenir
+  }
   document.getElementById('gcLaunch').addEventListener('click', function () {
-    var acik = !panel.hidden;
-    panel.hidden = acik;
-    if (!acik) { ciz(); setTimeout(function () { input.focus(); }, 60); }
+    var acilacak = panel.hidden;
+    panelDurum(acilacak);
+    if (acilacak) { ciz(); setTimeout(odakla, 60); }
   });
-  document.getElementById('gcClose').addEventListener('click', function () { panel.hidden = true; });
+  document.getElementById('gcClose').addEventListener('click', function () { panelDurum(false); });
   form.addEventListener('submit', function (e) { e.preventDefault(); gonder(input.value); });
 
   CIPLER.forEach(function (c) {

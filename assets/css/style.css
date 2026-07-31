@@ -1123,7 +1123,10 @@ html{ overflow-x:clip; }
 .gchat__act--wa{ border-color:rgba(37,211,102,.35); color:#25D366; }
 .gchat__act--wa:hover{ background:rgba(37,211,102,.12); }
 .gchat__menu{ padding:0 14px 12px; }
-.gchat__menu small{ display:block; color:var(--muted); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:7px; }
+.gchat__menu small{
+  display:block; color:var(--muted); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase;
+  position:sticky; top:0; z-index:1; background:var(--night-2); padding:4px 0 7px; margin:0; /* menü kayarken başlık sabit */
+}
 .gchat__menu nav{ display:grid; grid-template-columns:1fr 1fr; gap:7px; }
 .gchat__menu a{
   display:flex; align-items:center; gap:7px; padding:8px 10px;
@@ -1177,6 +1180,8 @@ html{ overflow-x:clip; }
     max-height:calc(100dvh - 158px); /* adres çubuğu açıkken bile başlık görünür */
   }
 }
+/* bot açıkken mobilde arka plan sayfası kaymasın */
+@media (max-width:720px){ body.chat-open{ overflow:hidden; } }
 
 /* =========================================================
    GALERİ CAROUSEL — kimlik-kart düzeni (ızgara galerinin yerine)
