@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>DEMO — Galeri Carousel | Gri Akademi</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ===== DEMO: kimlik-kart carousel (onaylanırsa style.css'e taşınacak) ===== */
+.demo-not{ max-width:720px; margin:26px auto 0; padding:10px 18px; border:1px dashed var(--line-2); border-radius:12px; color:var(--muted); font-size:.85rem; text-align:center; }
+
+.gcar{ position:relative; max-width:980px; margin:38px auto 0; }
+.gcar__stage{
+  position:relative; height:min(480px, 118vw); overflow:hidden;
+  /* kartlar mutlak konumlu; sahne yüksekliği kart + nefes payı */
+}
+.gcar__card{
+  position:absolute; left:50%; top:50%;
+  width:min(320px, 64vw); aspect-ratio:3/4;              /* KİMLİK KART: herkes aynı ölçü */
+  transform:translate(-50%,-50%);
+  border-radius:14px; overflow:hidden;
+  background:var(--paper, #F6F2EB); padding:10px 10px 12px;  /* kâğıt paspartu */
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+  transition:transform .55s var(--ease), filter .55s var(--ease), opacity .55s var(--ease);
+  cursor:pointer; will-change:transform, filter;
+}
+.gcar__card img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:8px; filter:grayscale(.06) contrast(1.03); }
+
+/* konum durumları */
+.gcar__card.is-active{
+  transform:translate(-50%,-50%) scale(1); z-index:5; filter:none; opacity:1;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 60px rgba(224,162,78,.14);
+}
+.gcar__card.is-next{
+  transform:translate(calc(-50% + min(300px, 60vw)),-50%) scale(.84);
+  z-index:3; filter:blur(5px) brightness(.62); opacity:.85;      /* SAĞDAN GELEN — BUĞULU */
+}
+.gcar__card.is-prev{
+  transform:translate(calc(-50% - min(300px, 60vw)),-50%) scale(.84);
+  z-index:3; filter:blur(5px) brightness(.62); opacity:.85;
+}
+.gcar__card.is-off-r{ transform:translate(calc(-50% + 620px),-50%) scale(.7); opacity:0; z-index:1; pointer-events:none; }
+.gcar__card.is-off-l{ transform:translate(calc(-50% - 620px),-50%) scale(.7); opacity:0; z-index:1; pointer-events:none; }
+
+/* oklar */
+.gcar__btn{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:8;
+  width:52px; height:52px; border-radius:50%; border:1px solid var(--line-2);
+  background:rgba(16,18,20,.85); color:var(--chalk); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px);
+  transition:all .2s;
+}
+.gcar__btn:hover{ border-color:var(--amber); color:var(--amber); transform:translateY(-50%) scale(1.07); }
+.gcar__btn svg{ width:20px; height:20px; }
+.gcar__btn--prev{ left:6px; }
+.gcar__btn--next{ right:6px; }
+
+/* sayaç + noktalar */
+.gcar__foot{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:20px; }
+.gcar__count{ font-family:var(--serif); color:var(--chalk-2); font-size:.95rem; min-width:56px; text-align:center; }
+.gcar__count b{ color:var(--amber); }
+.gcar__dots{ display:flex; gap:7px; }
+.gcar__dots button{ width:7px; height:7px; border-radius:50%; border:none; background:var(--line-2); cursor:pointer; transition:all .25s; padding:0; }
+.gcar__dots button.on{ background:var(--amber); transform:scale(1.35); }
+
+@media (max-width:640px){
+  .gcar__stage{ height:min(430px, 128vw); }
+  .gcar__card{ width:min(250px, 62vw); }
+  .gcar__card.is-next{ transform:translate(calc(-50% + 56vw),-50%) scale(.82); }
+  .gcar__card.is-prev{ transform:translate(calc(-50% - 56vw),-50%) scale(.82); }
+  .gcar__btn{ width:44px; height:44px; }
+  .gcar__btn--prev{ left:2px; } .gcar__btn--next{ right:2px; }
+}
+</style>
+</head>
+<body>
+
+<section class="section section--alt" id="galeri" style="min-height:100vh">
+  <div class="container">
+    <div class="gallery__head" style="text-align:center">
+      <span class="kicker kicker--center">Öğrenci Çalışmaları</span>
+      <h2 class="section-title">Örnek çizimler <em>galerimiz</em></h2>
+      <p class="section-lead">Atölyemizde üretilen karakalem ve kompozisyon çalışmalarından bir seçki.</p>
+    </div>
+
+    <div class="gcar" id="gcar" aria-roledescription="carousel">
+      <div class="gcar__stage" id="gcStage"></div>
+      <button type="button" class="gcar__btn gcar__btn--prev" id="gcPrev" aria-label="Önceki">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button type="button" class="gcar__btn gcar__btn--next" id="gcNext" aria-label="Sonraki">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="gcar__foot">
+        <div class="gcar__count"><b id="gcNo">1</b> / <span id="gcTop">12</span></div>
+        <div class="gcar__dots" id="gcDots"></div>
+      </div>
+    </div>
+
+    <p class="demo-not">DEMO — ok / kaydırma / klavye ←→ / noktalar çalışır. Onaylanırsa ana sayfadaki galerinin yerini alacak.</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var GORSELLER = [];
+  for (var g = 1; g <= 12; g++) GORSELLER.push('assets/img/galeri-' + String(g).padStart(2, '0') + '.jpg');
+
+  var stage = document.getElementById('gcStage');
+  var dots = document.getElementById('gcDots');
+  var no = document.getElementById('gcNo');
+  document.getElementById('gcTop').textContent = GORSELLER.length;
+
+  var kartlar = GORSELLER.map(function (src, i) {
+    var d = document.createElement('div');
+    d.className = 'gcar__card is-off-r';
+    d.innerHTML = '<img src="' + src + '" alt="Öğrenci çalışması ' + (i + 1) + '" loading="lazy">';
+    stage.appendChild(d);
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', (i + 1) + '. görsel');
+    b.addEventListener('click', function () { git(i); });
+    dots.appendChild(b);
+    return d;
+  });
+
+  var aktif = 0;
+  function siniflandir() {
+    var n = GORSELLER.length;
+    kartlar.forEach(function (k, i) {
+      var fark = (i - aktif + n) % n;               // 0=aktif, 1=sağ komşu, n-1=sol komşu
+      k.className = 'gcar__card ' + (
+        fark === 0 ? 'is-active' :
+        fark === 1 ? 'is-next' :
+        fark === n - 1 ? 'is-prev' :
+        fark <= n / 2 ? 'is-off-r' : 'is-off-l');
+    });
+    no.textContent = aktif + 1;
+    Array.prototype.forEach.call(dots.children, function (b, i) { b.className = i === aktif ? 'on' : ''; });
+  }
+  function git(i) { var n = GORSELLER.length; aktif = ((i % n) + n) % n; siniflandir(); }
+
+  document.getElementById('gcNext').addEventListener('click', function () { git(aktif + 1); });
+  document.getElementById('gcPrev').addEventListener('click', function () { git(aktif - 1); });
+  kartlar.forEach(function (k, i) {
+    k.addEventListener('click', function () { if (i !== aktif) git(i); });  // buğulu komşuya tık = öne getir
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') git(aktif + 1);
+    if (e.key === 'ArrowLeft') git(aktif - 1);
+  });
+
+  // dokunmatik kaydırma
+  var bx = null;
+  stage.addEventListener('touchstart', function (e) { bx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (bx === null) return;
+    var f = e.changedTouches[0].clientX - bx;
+    if (Math.abs(f) > 42) git(aktif + (f < 0 ? 1 : -1));
+    bx = null;
+  }, { passive: true });
+
+  siniflandir();
+})();
+</script>
+</body>
+</html>
