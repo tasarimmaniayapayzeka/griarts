@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=d8ea133f">
+<link rel="stylesheet" href="assets/css/style.css?v=ea0bb919">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"EducationalOrganization",
@@ -267,19 +267,27 @@
 <section class="section section--alt" id="galeri">
   <div class="container">
     <div class="gallery__head reveal"><span class="kicker kicker--center">Öğrenci Çalışmaları</span><h2 class="section-title">Örnek çizimler <em>galerimiz</em></h2><p class="section-lead">Atölyemizde üretilen karakalem ve kompozisyon çalışmalarından bir seçki.</p></div>
-    <div class="gallery__grid" id="galleryGrid">
-      <a class="gallery__item reveal" data-full="assets/img/galeri-01.jpg"><img src="assets/img/galeri-01.jpg" alt="Öğrenci karakalem kompozisyon çalışması 1" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-02.jpg"><img src="assets/img/galeri-02.jpg" alt="Öğrenci karakalem çalışması 2" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-03.jpg"><img src="assets/img/galeri-03.jpg" alt="Öğrenci karakalem çalışması 3" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-04.jpg"><img src="assets/img/galeri-04.jpg" alt="Öğrenci karakalem çalışması 4" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-05.jpg"><img src="assets/img/galeri-05.jpg" alt="Öğrenci karakalem çalışması 5" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-06.jpg"><img src="assets/img/galeri-06.jpg" alt="Öğrenci karakalem çalışması 6" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-07.jpg"><img src="assets/img/galeri-07.jpg" alt="Öğrenci karakalem çalışması 7" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-08.jpg"><img src="assets/img/galeri-08.jpg" alt="Öğrenci karakalem çalışması 8" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-09.jpg"><img src="assets/img/galeri-09.jpg" alt="Öğrenci karakalem çalışması 9" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-10.jpg"><img src="assets/img/galeri-10.jpg" alt="Öğrenci karakalem çalışması 10" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-11.jpg"><img src="assets/img/galeri-11.jpg" alt="Öğrenci karakalem çalışması 11" loading="lazy"></a>
-      <a class="gallery__item reveal" data-full="assets/img/galeri-12.jpg"><img src="assets/img/galeri-12.jpg" alt="Öğrenci karakalem çalışması 12" loading="lazy"></a>
+    <div class="gcar reveal" id="galleryGrid">
+      <div class="gcar__stage">
+      <div class="gcar__card"><img src="assets/img/galeri-01.jpg" alt="Öğrenci karakalem kompozisyon çalışması 1" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-02.jpg" alt="Öğrenci karakalem çalışması 2" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-03.jpg" alt="Öğrenci karakalem çalışması 3" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-04.jpg" alt="Öğrenci karakalem çalışması 4" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-05.jpg" alt="Öğrenci karakalem çalışması 5" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-06.jpg" alt="Öğrenci karakalem çalışması 6" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-07.jpg" alt="Öğrenci karakalem çalışması 7" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-08.jpg" alt="Öğrenci karakalem çalışması 8" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-09.jpg" alt="Öğrenci karakalem çalışması 9" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-10.jpg" alt="Öğrenci karakalem çalışması 10" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-11.jpg" alt="Öğrenci karakalem çalışması 11" loading="lazy"></div>
+      <div class="gcar__card"><img src="assets/img/galeri-12.jpg" alt="Öğrenci karakalem çalışması 12" loading="lazy"></div>
+      </div>
+      <button type="button" class="gcar__btn gcar__btn--prev" data-prev aria-label="Önceki görsel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button type="button" class="gcar__btn gcar__btn--next" data-next aria-label="Sonraki görsel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <div class="gcar__foot">
+        <div class="gcar__count"><b data-no>1</b> / <span data-top>12</span></div>
+        <div class="gcar__dots" data-dots></div>
+      </div>
     </div>
   </div>
 </section>
@@ -426,7 +434,7 @@
   <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Sonraki">›</button>
 </div>
 
-<script src="assets/js/main.js?v=69acd1e6"></script>
+<script src="assets/js/main.js?v=7e82a363"></script>
 <script src="assets/js/form.js?v=e75dd403"></script>
 <script src="assets/js/chat.js?v=afa2d22e"></script>
 </body>

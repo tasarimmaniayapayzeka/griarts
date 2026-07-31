@@ -135,3 +135,63 @@
     });
   });
 })();
+
+/* ---------- Galeri carousel (kimlik-kart) ---------- */
+(function () {
+  'use strict';
+  document.querySelectorAll('.gcar').forEach(function (kok, kacinci) {
+    var stage = kok.querySelector('.gcar__stage');
+    var kartlar = Array.prototype.slice.call(stage.querySelectorAll('.gcar__card'));
+    if (kartlar.length < 2) return;
+    var dots = kok.querySelector('[data-dots]');
+    var no = kok.querySelector('[data-no]');
+    var top = kok.querySelector('[data-top]');
+    if (top) top.textContent = kartlar.length;
+    var aktif = 0, n = kartlar.length;
+
+    kartlar.forEach(function (k, i) {
+      if (dots) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', (i + 1) + '. görsel');
+        b.addEventListener('click', function () { git(i); });
+        dots.appendChild(b);
+      }
+      k.addEventListener('click', function () { if (i !== aktif) git(i); });
+    });
+
+    function siniflandir() {
+      kartlar.forEach(function (k, i) {
+        var fark = (i - aktif + n) % n;
+        k.className = 'gcar__card ' + (
+          fark === 0 ? 'is-active' :
+          fark === 1 ? 'is-next' :
+          fark === n - 1 ? 'is-prev' :
+          fark <= n / 2 ? 'is-off-r' : 'is-off-l');
+      });
+      if (no) no.textContent = aktif + 1;
+      if (dots) Array.prototype.forEach.call(dots.children, function (b, i) { b.className = i === aktif ? 'on' : ''; });
+    }
+    function git(i) { aktif = ((i % n) + n) % n; siniflandir(); }
+
+    var ileri = kok.querySelector('[data-next]');
+    var geri = kok.querySelector('[data-prev]');
+    if (ileri) ileri.addEventListener('click', function () { git(aktif + 1); });
+    if (geri) geri.addEventListener('click', function () { git(aktif - 1); });
+
+    if (kacinci === 0) document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') git(aktif + 1);
+      if (e.key === 'ArrowLeft') git(aktif - 1);
+    });
+
+    var bx = null;
+    stage.addEventListener('touchstart', function (e) { bx = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (bx === null) return;
+      var f = e.changedTouches[0].clientX - bx;
+      if (Math.abs(f) > 42) git(aktif + (f < 0 ? 1 : -1));
+      bx = null;
+    }, { passive: true });
+
+    siniflandir();
+  });
+})();

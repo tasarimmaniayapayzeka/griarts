@@ -18,7 +18,7 @@ const DOMAIN = 'https://www.griarts.com.tr';
 // URL'lerde geçen eski alan adını düzelt (e-postalara DOKUNMA: info@griarts.com)
 const ESKI_URL = /(https?:\/\/)(www\.)?griarts\.com(?!\.tr)/g;
 
-const HARIC = new Set(['ogrenci-panel.html', 'ogrenci-giris.html', '_demo-galeri.html']); // noindex: portal + demo
+const HARIC = new Set(['ogrenci-panel.html', 'ogrenci-giris.html']); // noindex: portal + demo
 const rapor = [];
 
 const sayfalar = fs.readdirSync(ROOT).filter(f => f.endsWith('.html'));

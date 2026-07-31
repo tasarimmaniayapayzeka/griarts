@@ -1157,3 +1157,63 @@ html{ overflow-x:clip; }
   .gchat__launch{ bottom:78px; right:16px; width:52px; height:52px; }
   .gchat__panel{ right:14px; bottom:136px; max-height:calc(100vh - 160px); }
 }
+
+/* =========================================================
+   GALERİ CAROUSEL — kimlik-kart düzeni (ızgara galerinin yerine)
+   Kart çerçevesi: taban rengiyle uyumlu koyu + ince (4px);
+   komşu kartlar buğulu (blur 6px), okla/kaydırmayla öne gelir.
+   ========================================================= */
+.gcar{ position:relative; max-width:980px; margin:38px auto 0; }
+.gcar__stage{ position:relative; height:min(480px, 118vw); overflow:hidden; }
+.gcar__card{
+  position:absolute; left:50%; top:50%;
+  width:min(320px, 64vw); aspect-ratio:3/4;               /* her kart AYNI ölçü */
+  transform:translate(-50%,-50%);
+  border-radius:12px; overflow:hidden;
+  background:var(--night-3); border:1px solid var(--line-2);
+  padding:4px 4px 5px;                                    /* ince, taban renkli çerçeve */
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+  transition:transform .55s var(--ease), filter .55s var(--ease), opacity .55s var(--ease);
+  cursor:pointer; will-change:transform, filter;
+}
+.gcar__card img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:9px; filter:grayscale(.06) contrast(1.03); }
+.gcar__card.is-active{
+  transform:translate(-50%,-50%) scale(1); z-index:5; filter:none; opacity:1; cursor:default;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 60px rgba(224,162,78,.14);
+}
+.gcar__card.is-next{
+  transform:translate(calc(-50% + min(300px, 60vw)),-50%) scale(.84);
+  z-index:3; filter:blur(6px) brightness(.62); opacity:.85;
+}
+.gcar__card.is-prev{
+  transform:translate(calc(-50% - min(300px, 60vw)),-50%) scale(.84);
+  z-index:3; filter:blur(6px) brightness(.62); opacity:.85;
+}
+.gcar__card.is-off-r{ transform:translate(calc(-50% + 620px),-50%) scale(.7); opacity:0; z-index:1; pointer-events:none; }
+.gcar__card.is-off-l{ transform:translate(calc(-50% - 620px),-50%) scale(.7); opacity:0; z-index:1; pointer-events:none; }
+.gcar__btn{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:8;
+  width:52px; height:52px; border-radius:50%; border:1px solid var(--line-2);
+  background:rgba(16,18,20,.85); color:var(--chalk); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px);
+  transition:all .2s;
+}
+.gcar__btn:hover{ border-color:var(--amber); color:var(--amber); transform:translateY(-50%) scale(1.07); }
+.gcar__btn svg{ width:20px; height:20px; }
+.gcar__btn--prev{ left:6px; }
+.gcar__btn--next{ right:6px; }
+.gcar__foot{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top:20px; }
+.gcar__count{ font-family:var(--serif); color:var(--chalk-2); font-size:.95rem; min-width:56px; text-align:center; }
+.gcar__count b{ color:var(--amber); }
+.gcar__dots{ display:flex; gap:7px; }
+.gcar__dots button{ width:7px; height:7px; border-radius:50%; border:none; background:var(--line-2); cursor:pointer; transition:all .25s; padding:0; }
+.gcar__dots button.on{ background:var(--amber); transform:scale(1.35); }
+@media (max-width:640px){
+  .gcar__stage{ height:min(430px, 128vw); }
+  .gcar__card{ width:min(250px, 62vw); }
+  .gcar__card.is-next{ transform:translate(calc(-50% + 56vw),-50%) scale(.82); }
+  .gcar__card.is-prev{ transform:translate(calc(-50% - 56vw),-50%) scale(.82); }
+  .gcar__btn{ width:44px; height:44px; }
+  .gcar__btn--prev{ left:2px; } .gcar__btn--next{ right:2px; }
+}
+@media (prefers-reduced-motion:reduce){ .gcar__card{ transition:none; } }
